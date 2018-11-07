@@ -10,27 +10,48 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet var roomSizeValue: UILabel!
-    @IBOutlet var lowCutoffValue: UILabel!
+    var roomSizeValue: Float
+    @IBOutlet var roomSizeValueLabel: UILabel!
+    
+    var lowCutoffValue: Float
+    @IBOutlet var lowCutoffValueLabel: UILabel!
+    
+    var audioEngine: AudioEngineWrapper!   // 1
+    
+    required init?(coder aDecoder: NSCoder) {
 
+        roomSizeValue = 0.0
+        lowCutoffValue = 1.0
+        audioEngine = AudioEngineWrapper()
+        
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func roomSizeSliderValueChanged(sender: UISlider) {
-        let currentValue = sender.value
-        print("Room Size slider changing to \(currentValue) ?")
+        roomSizeValue = sender.value
+        print("Room Size slider changing to \(roomSizeValue) ?")
+        
         DispatchQueue.main.async {
-            self.roomSizeValue.text = "\(currentValue)"
+            self.roomSizeValueLabel.text = "\(self.roomSizeValue)"
         }
+        
+        
+        self.audioEngine.setRoomSize (roomSizeValue)
+        
     }
 
     @IBAction func lowCutoffSliderValueChanged(sender: UISlider) {
-        let currentValue = sender.value
-        print("Cutoff slider changing to \(currentValue) ?")
+        lowCutoffValue = Float (sender.value)
+        print("Cutoff slider changing to \(lowCutoffValue) ?")
+        self.audioEngine.setLowpassCutoff (lowCutoffValue)
         DispatchQueue.main.async {
-            self.lowCutoffValue.text = "\(currentValue)"
+            self.lowCutoffValueLabel.text = "\(self.lowCutoffValue)"
+            
         }
     }
 

@@ -77,8 +77,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="lowCutoffValue" destination="ehq-cB-pYs" id="8W4-LA-QaN"/>
-                        <outlet property="roomSizeValue" destination="5Vi-Lx-Wlv" id="aH3-qR-hzT"/>
+                        <outlet property="lowCutoffValueLabel" destination="ehq-cB-pYs" id="h7r-P8-XlS"/>
+                        <outlet property="roomSizeValueLabel" destination="5Vi-Lx-Wlv" id="Xn9-jI-TQc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
