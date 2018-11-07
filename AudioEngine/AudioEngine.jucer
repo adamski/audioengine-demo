@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="FGHqSi" name="AudioEngineApp" projectType="guiapp" jucerVersion="5.3.2">
-  <MAINGROUP id="rsHQ8Z" name="AudioEngineApp">
+<JUCERPROJECT id="FGHqSi" name="AudioEngine" projectType="library" jucerVersion="5.3.2">
+  <MAINGROUP id="rsHQ8Z" name="AudioEngine">
     <GROUP id="{08F550BD-C8BB-3100-441A-58903A2F048F}" name="Source">
       <FILE id="PFUocb" name="DemoAudioEngine.cpp" compile="1" resource="0"
             file="Source/DemoAudioEngine.cpp"/>
