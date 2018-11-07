@@ -17,7 +17,7 @@ public:
 
     //==============================================================================
     void setRoomSize(float roomSize);    // roomSize goes from 0 to 1
-    void setLowpassCutoff(float cutoff); // cutoff goes from 0 to 1 (1 being nyguist frequecncy)
+    void setLowpassCutoff(float cutoff); // cutoff goes from 0 to 1 (1 being nyquist frequecncy)
     // TODO add more DSP methods
 
     //==============================================================================
