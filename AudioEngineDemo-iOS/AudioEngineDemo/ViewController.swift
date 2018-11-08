@@ -10,18 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var roomSizeValue: Float
     @IBOutlet var roomSizeValueLabel: UILabel!
-    
-    var lowCutoffValue: Float
     @IBOutlet var lowCutoffValueLabel: UILabel!
     
-    var audioEngine: AudioEngineWrapper!   // 1
+    var audioEngine: AudioEngineWrapper   // 1
     
     required init?(coder aDecoder: NSCoder) {
 
-        roomSizeValue = 0.0
-        lowCutoffValue = 1.0
         audioEngine = AudioEngineWrapper()
         
         super.init(coder: aDecoder)
@@ -33,11 +28,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func roomSizeSliderValueChanged(sender: UISlider) {
-        roomSizeValue = sender.value
+        let roomSizeValue = sender.value
         print("Room Size slider changing to \(roomSizeValue) ?")
         
         DispatchQueue.main.async {
-            self.roomSizeValueLabel.text = "\(self.roomSizeValue)"
+            self.roomSizeValueLabel.text = "\(roomSizeValue)"
         }
         
         
@@ -46,11 +41,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func lowCutoffSliderValueChanged(sender: UISlider) {
-        lowCutoffValue = Float (sender.value)
+        let lowCutoffValue = sender.value
         print("Cutoff slider changing to \(lowCutoffValue) ?")
         self.audioEngine.setLowpassCutoff (lowCutoffValue)
         DispatchQueue.main.async {
-            self.lowCutoffValueLabel.text = "\(self.lowCutoffValue)"
+            self.lowCutoffValueLabel.text = "\(lowCutoffValue)"
             
         }
     }
