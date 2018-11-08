@@ -21,6 +21,9 @@
                                 <rect key="frame" x="119" y="102" width="136" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Choose Audio File..."/>
+                                <connections>
+                                    <action selector="loadFileButtonClicked" destination="BYZ-38-t0r" eventType="touchUpInside" id="XfO-hX-bSo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-17-QAq">
                                 <rect key="frame" x="150" y="198" width="74" height="30"/>
@@ -77,7 +80,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="lowCutoffSlider" destination="EPb-fB-9Dg" id="SPN-uX-7LJ"/>
                         <outlet property="lowCutoffValueLabel" destination="ehq-cB-pYs" id="h7r-P8-XlS"/>
+                        <outlet property="roomSizeSlider" destination="cYx-in-vy8" id="qwT-j9-7Ph"/>
                         <outlet property="roomSizeValueLabel" destination="5Vi-Lx-Wlv" id="Xn9-jI-TQc"/>
                     </connections>
                 </viewController>

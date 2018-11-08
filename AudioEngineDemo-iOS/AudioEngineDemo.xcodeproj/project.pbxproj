@@ -14,6 +14,7 @@
 		EA6F9A7221934BE200E0108C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA6F9A7121934BE100E0108C /* AudioToolbox.framework */; };
 		EA6F9A7421934C2900E0108C /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA6F9A7321934C2800E0108C /* CoreMIDI.framework */; };
 		EA9192D221934CC10016382E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9192D121934CC10016382E /* AVFoundation.framework */; };
+		EA9192D521944A6E0016382E /* Chhhhaah.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA9192D421944A6E0016382E /* Chhhhaah.wav */; };
 		EAA01E032191DDE000AA8344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA01E022191DDE000AA8344 /* AppDelegate.swift */; };
 		EAA01E052191DDE000AA8344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA01E042191DDE000AA8344 /* ViewController.swift */; };
 		EAA01E082191DDE000AA8344 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA01E062191DDE000AA8344 /* Main.storyboard */; };
@@ -48,6 +49,8 @@
 		EA6F9A7121934BE100E0108C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EA6F9A7321934C2800E0108C /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		EA9192D121934CC10016382E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EA9192D421944A6E0016382E /* Chhhhaah.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Chhhhaah.wav; sourceTree = "<group>"; };
+		EA9192D621944C6A0016382E /* AudioEngineDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioEngineDemo.entitlements; sourceTree = "<group>"; };
 		EAA01DFF2191DDE000AA8344 /* AudioEngineDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioEngineDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA01E022191DDE000AA8344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAA01E042191DDE000AA8344 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,11 +100,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		EA9192D321944A190016382E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA9192D421944A6E0016382E /* Chhhhaah.wav */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		EAA01DF62191DDE000AA8344 = {
 			isa = PBXGroup;
 			children = (
 				EAA01E012191DDE000AA8344 /* AudioEngineDemo */,
 				EAA01E002191DDE000AA8344 /* Products */,
+				EA9192D321944A190016382E /* Resources */,
 				EA6F9A4821932D6F00E0108C /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -117,6 +129,7 @@
 		EAA01E012191DDE000AA8344 /* AudioEngineDemo */ = {
 			isa = PBXGroup;
 			children = (
+				EA9192D621944C6A0016382E /* AudioEngineDemo.entitlements */,
 				EA6F9A4B21932F4600E0108C /* AudioEngineWrapper.h */,
 				EAA01E022191DDE000AA8344 /* AppDelegate.swift */,
 				EAA01E042191DDE000AA8344 /* ViewController.swift */,
@@ -163,6 +176,14 @@
 					EAA01DFE2191DDE000AA8344 = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1000;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -206,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAA01E0D2191DDE200AA8344 /* LaunchScreen.storyboard in Resources */,
+				EA9192D521944A6E0016382E /* Chhhhaah.wav in Resources */,
 				EAA01E0A2191DDE200AA8344 /* Assets.xcassets in Resources */,
 				EAA01E082191DDE000AA8344 /* Main.storyboard in Resources */,
 			);
@@ -374,6 +396,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = AudioEngineDemo/AudioEngineDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9XT2X2HYD7;
 				INFOPLIST_FILE = AudioEngineDemo/Info.plist;
@@ -396,6 +419,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = AudioEngineDemo/AudioEngineDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9XT2X2HYD7;
 				INFOPLIST_FILE = AudioEngineDemo/Info.plist;

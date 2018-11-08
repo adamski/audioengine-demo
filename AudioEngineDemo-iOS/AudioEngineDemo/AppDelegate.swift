@@ -23,8 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = demoViewController
 
- 
         window?.makeKeyAndVisible()
+
+        // Copy default files to app Documents folder
+        let sourceURL = Bundle.main.url(forResource: "Chhhhaah", withExtension: ".wav")
+        if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fullDestURL = documentsPathURL.appendingPathComponent("Chhhhaah.wav")
+            let fileManager = FileManager.default
+
+            do {
+                try fileManager.copyItem(at: sourceURL!, to: fullDestURL)
+            } catch {
+                print(error)
+            }
+        }
 
         return true
     }
