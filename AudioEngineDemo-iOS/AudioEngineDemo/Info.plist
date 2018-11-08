@@ -10,11 +10,9 @@
 			<key>CFBundleTypeIconFiles</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>AudioWAV</string>
+			<string></string>
 			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.wav</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
