@@ -1,5 +1,6 @@
-AudioEngineApp/Builds/
-AudioEngineApp/.idea/
+DemoAudioEngine/Builds/
+DemoAudioEngine/JuceLibraryCode/
+DemoAudioEngine/.idea/
 AudioEngineDemo-iOS/Build/
 AudioEngineDemo-iOS/.idea/
 .DS_Store

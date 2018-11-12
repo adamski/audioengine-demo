@@ -7,9 +7,9 @@
 
 #pragma once
 
-#import <Foundation/Foundation.h>
-
 #ifdef __APPLE__
+
+#import <Foundation/Foundation.h>
 
 @interface AudioEngineWrapper : NSObject
 

@@ -5,7 +5,7 @@
 //  Created by Adam Wilson on 07/11/2018.
 //
 
-#if __APPLE__
+#ifdef __APPLE__
 
 #import "../DemoAudioEngine.h"
 #import "AudioEngineWrapper.h"

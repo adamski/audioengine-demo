@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="FGHqSi" name="DemoAudioEngine" projectType="dll" jucerVersion="5.4.1"
+              companyName="Acme Inc." bundleIdentifier="com.acme.DemoAudioEngine">
+  <MAINGROUP id="rsHQ8Z" name="DemoAudioEngine">
+    <GROUP id="{08F550BD-C8BB-3100-441A-58903A2F048F}" name="Source">
+      <GROUP id="{3A1377D6-8069-F7ED-A639-D656C4D3DBFE}" name="Objective-C">
+        <FILE id="w0W29W" name="AudioEngineWrapper.h" compile="0" resource="0"
+              file="Source/Objective-C/AudioEngineWrapper.h"/>
+        <FILE id="UZ6luR" name="AudioEngineWrapper.mm" compile="1" resource="0"
+              file="Source/Objective-C/AudioEngineWrapper.mm"/>
+      </GROUP>
+      <FILE id="e0rlkS" name="AndroidBindings.cpp" compile="1" resource="0"
+            file="Source/AndroidBindings.cpp"/>
+      <FILE id="PFUocb" name="DemoAudioEngine.cpp" compile="1" resource="0"
+            file="Source/DemoAudioEngine.cpp"/>
+      <FILE id="P71x78" name="DemoAudioEngine.h" compile="0" resource="0"
+            file="Source/DemoAudioEngine.h"/>
+      <FILE id="LLJW4d" name="WindowsBindings.cpp" compile="1" resource="0"
+            file="Source/WindowsBindings.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_IPHONE targetFolder="Builds/iOS">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" customXcodeFlags="DYLIB_INSTALL_NAME_BASE = &quot;@rpath&quot;, LD_DYLIB_INSTALL_NAME = &quot;$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)&quot;"/>
+        <CONFIGURATION isDebug="0" name="Release" customXcodeFlags="DYLIB_INSTALL_NAME_BASE = &quot;@rpath&quot;, LD_DYLIB_INSTALL_NAME = &quot;$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)&quot;"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra"/>
+        <MODULEPATH id="juce_gui_basics"/>
+        <MODULEPATH id="juce_graphics"/>
+        <MODULEPATH id="juce_events"/>
+        <MODULEPATH id="juce_dsp"/>
+        <MODULEPATH id="juce_data_structures"/>
+        <MODULEPATH id="juce_core"/>
+        <MODULEPATH id="juce_audio_utils"/>
+        <MODULEPATH id="juce_audio_processors"/>
+        <MODULEPATH id="juce_audio_formats"/>
+        <MODULEPATH id="juce_audio_devices"/>
+        <MODULEPATH id="juce_audio_basics"/>
+      </MODULEPATHS>
+    </XCODE_IPHONE>
+    <ANDROIDSTUDIO targetFolder="Builds/Android" androidMinimumSDK="19" extraLinkerFlags="-Wl,--no-undefined"
+                   extraCompilerFlags="-fvisibility=hidden">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_dsp" path="../../juce"/>
+        <MODULEPATH id="juce_core" path="../../juce"/>
+        <MODULEPATH id="juce_audio_formats" path="../../juce"/>
+        <MODULEPATH id="juce_audio_devices" path="../../juce"/>
+        <MODULEPATH id="juce_audio_basics" path="../../juce"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </ANDROIDSTUDIO>
+    <VS2017 targetFolder="Builds/VisualStudio2017">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="../../juce"/>
+        <MODULEPATH id="juce_gui_basics" path="../../juce"/>
+        <MODULEPATH id="juce_graphics" path="../../juce"/>
+        <MODULEPATH id="juce_events" path="../../juce"/>
+        <MODULEPATH id="juce_dsp" path="../../juce"/>
+        <MODULEPATH id="juce_data_structures" path="../../juce"/>
+        <MODULEPATH id="juce_core" path="../../juce"/>
+        <MODULEPATH id="juce_audio_utils" path="../../juce"/>
+        <MODULEPATH id="juce_audio_processors" path="../../juce"/>
+        <MODULEPATH id="juce_audio_formats" path="../../juce"/>
+        <MODULEPATH id="juce_audio_devices" path="../../juce"/>
+        <MODULEPATH id="juce_audio_basics" path="../../juce"/>
+      </MODULEPATHS>
+    </VS2017>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <LINUX/>
+    <WINDOWS/>
+    <OSX/>
+  </LIVE_SETTINGS>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_USE_MP3AUDIOFORMAT="1"/>
+</JUCERPROJECT>
