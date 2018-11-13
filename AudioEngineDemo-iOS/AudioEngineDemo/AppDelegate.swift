@@ -26,13 +26,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         // Copy default files to app Documents folder
-        let sourceURL = Bundle.main.url(forResource: "Chhhhaah", withExtension: ".wav")
+        // (There is proabably a cleaner way to do this!)
+        let file1URL = Bundle.main.url(forResource: "Chhhhaah", withExtension: ".wav")
+        let file2URL = Bundle.main.url(forResource: "The VERONA Break edit", withExtension: ".wav")
+        
         if let documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fullDestURL = documentsPathURL.appendingPathComponent("Chhhhaah.wav")
+            let fullDest1URL = documentsPathURL.appendingPathComponent("Chhhhaah.wav")
+            let fullDest2URL = documentsPathURL.appendingPathComponent("The VERONA Break edit.wav")
             let fileManager = FileManager.default
 
             do {
-                try fileManager.copyItem(at: sourceURL!, to: fullDestURL)
+                try fileManager.copyItem(at: file1URL!, to: fullDest1URL)
+            } catch {
+                print(error)
+            }
+            
+            do {
+                try fileManager.copyItem(at: file2URL!, to: fullDest2URL)
             } catch {
                 print(error)
             }

@@ -14,17 +14,21 @@ class ViewController:
         UIDocumentPickerDelegate,
         UINavigationControllerDelegate {
     
+    @IBOutlet var playStopButton: UIButton!
     @IBOutlet var roomSizeValueLabel: UILabel!
     @IBOutlet var lowCutoffValueLabel: UILabel!
 
     @IBOutlet var roomSizeSlider: UISlider!
     @IBOutlet var lowCutoffSlider: UISlider!
 
+    var fileURL: URL?
+    
     var audioEngine: DemoAudioEngineBindings   // 1
     
     required init?(coder aDecoder: NSCoder) {
 
         audioEngine = DemoAudioEngineBindings()     // 1
+        
         
         super.init(coder: aDecoder)
     }
@@ -36,8 +40,8 @@ class ViewController:
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        let myURL = url as URL
-        print("import result : \(myURL)")
+        self.fileURL = url as URL
+        print("import result : \(fileURL)")
     }
 
 
@@ -61,6 +65,32 @@ class ViewController:
         documentPicker.title = "Choose an audio file"
         
         self.present(documentPicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func playButtonClicked() {
+        self.audioEngine.play (self.fileURL?.absoluteString)
+        self.playStopButton.setTitle("Stop", for: UIControl.State.normal);
+    }
+    
+    func didFinishPlaying()
+    {
+        self.playStopButton.setTitle("Play", for: UIControl.State.normal);
+    }
+    
+    @IBAction func pauseButtonClicked() {
+        
+    }
+    
+    @IBAction func resumeButtonClicked() {
+        
+    }
+    
+    @IBAction func showButtonClicked() {
+        
+    }
+    
+    @IBAction func hideButtonClicked() {
+        
     }
     
     @IBAction func roomSizeSliderValueChanged(sender: UISlider) {

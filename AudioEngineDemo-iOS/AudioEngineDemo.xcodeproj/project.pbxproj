@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EA01127E219A2FC9003AD55F /* DemoAudioEngine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EA011279219A2F79003AD55F /* DemoAudioEngine.dylib */; };
 		EA01127F219A3010003AD55F /* DemoAudioEngine.dylib in Copy Dynamic Library */ = {isa = PBXBuildFile; fileRef = EA011279219A2F79003AD55F /* DemoAudioEngine.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		EA0112AC219B7848003AD55F /* The VERONA Break edit.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA0112AA219B7848003AD55F /* The VERONA Break edit.wav */; };
 		EA9192D521944A6E0016382E /* Chhhhaah.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA9192D421944A6E0016382E /* Chhhhaah.wav */; };
 		EAA01E032191DDE000AA8344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA01E022191DDE000AA8344 /* AppDelegate.swift */; };
 		EAA01E052191DDE000AA8344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA01E042191DDE000AA8344 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		EA011274219A2F79003AD55F /* DemoAudioEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DemoAudioEngine.xcodeproj; path = ../DemoAudioEngine/Builds/iOS/DemoAudioEngine.xcodeproj; sourceTree = "<group>"; };
+		EA0112AA219B7848003AD55F /* The VERONA Break edit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "The VERONA Break edit.wav"; sourceTree = "<group>"; };
 		EA6F9A592193320300E0108C /* AudioEngineDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioEngineDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		EA9192D421944A6E0016382E /* Chhhhaah.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Chhhhaah.wav; sourceTree = "<group>"; };
 		EA9192D621944C6A0016382E /* AudioEngineDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioEngineDemo.entitlements; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		EA9192D321944A190016382E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EA0112AA219B7848003AD55F /* The VERONA Break edit.wav */,
 				EA9192D421944A6E0016382E /* Chhhhaah.wav */,
 			);
 			path = Resources;
@@ -208,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0112AC219B7848003AD55F /* The VERONA Break edit.wav in Resources */,
 				EAA01E0D2191DDE200AA8344 /* LaunchScreen.storyboard in Resources */,
 				EA9192D521944A6E0016382E /* Chhhhaah.wav in Resources */,
 				EAA01E0A2191DDE200AA8344 /* Assets.xcassets in Resources */,
