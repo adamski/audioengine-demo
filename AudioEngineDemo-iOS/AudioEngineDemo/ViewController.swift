@@ -20,11 +20,11 @@ class ViewController:
     @IBOutlet var roomSizeSlider: UISlider!
     @IBOutlet var lowCutoffSlider: UISlider!
 
-    var audioEngine: AudioEngineWrapper   // 1
+    var audioEngine: DemoAudioEngineBindings   // 1
     
     required init?(coder aDecoder: NSCoder) {
 
-        audioEngine = AudioEngineWrapper()     // 1
+        audioEngine = DemoAudioEngineBindings()     // 1
         
         super.init(coder: aDecoder)
     }

@@ -5,13 +5,13 @@
 //  Created by Adam Wilson on 07/11/2018.
 //
 
-#import "DemoAudioEngineBindings.h"
+#import "ObjectiveCBindings.h"
 
 #include "JuceHeader.h"
 
 #if JUCE_IOS || JUCE_MAC
 
-#import "../DemoAudioEngine.h"
+#import "DemoAudioEngine.h"
 
 
 @interface DemoAudioEngineBindings() {
