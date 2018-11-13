@@ -24,7 +24,7 @@
 
 - (void) play: (NSString*) urlString
 {
-    audioEngine.play (urlString.UTF8String);
+    audioEngine.play (urlString.UTF8String); 
 }
 
 - (void) stop
@@ -52,12 +52,7 @@
     audioEngine.setLowpassCutoff (cutoff);
 }
 
-- (void) setPlaybackFinishedCallback: (Callback) callbackBlock
-{
-    // Here we need to store the block/lambda in our Obj-C wrapper so we can call it later
-    self.playbackFinishedCallback = callbackBlock;
-    //self->audioEngine.playbackFinishedCallback (self.showHeadphoneDialogBlock);
-}
+
 
 @end
 

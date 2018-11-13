@@ -24,8 +24,6 @@ typedef void (^Callback)();  // 2
 - (void) setRoomSize: (float) roomSize;
 - (void) setLowpassCutoff: (float) cutoff;
 
-- (void) setPlaybackFinishedCallback: (Callback) callbackBlock;  // 2
-
 @property (copy) Callback playbackFinishedCallback;       // 2
 
 @end

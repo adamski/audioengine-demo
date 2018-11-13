@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController:
         UIViewController,
-        UIDocumentMenuDelegate,
         UIDocumentPickerDelegate,
         UINavigationControllerDelegate {
     
@@ -41,15 +40,8 @@ class ViewController:
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         self.fileURL = url as URL
-        print("import result : \(fileURL)")
+        print("import result : \(String(describing: fileURL))")
     }
-
-
-    public func documentMenu(_ documentMenu:UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
-        documentPicker.delegate = self
-        present(documentPicker, animated: true, completion: nil)
-    }
-
 
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         print("document picker was cancelled")
@@ -68,7 +60,7 @@ class ViewController:
     }
     
     @IBAction func playButtonClicked() {
-        self.audioEngine.play (self.fileURL?.absoluteString)
+        self.audioEngine.play (self.fileURL?.absoluteString)  // 1
         self.playStopButton.setTitle("Stop", for: UIControl.State.normal);
     }
     
@@ -78,11 +70,11 @@ class ViewController:
     }
     
     @IBAction func pauseButtonClicked() {
-        
+        self.audioEngine.pause(); // 1
     }
     
     @IBAction func resumeButtonClicked() {
-        
+        self.audioEngine.resume(); // 1
     }
     
     @IBAction func showButtonClicked() {
