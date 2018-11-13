@@ -27,6 +27,8 @@ public:
     void* addWaveformComponentToNativeParentView (void* nativeView);
     void removeWaveformComponentFromNativeParentView();
     
+    void setWaveformComponentBounds (int x, int y, int width, int height);
+    
     void setPlaybackFinishedCallback (std::function<void()>); // 2
 
     //==============================================================================

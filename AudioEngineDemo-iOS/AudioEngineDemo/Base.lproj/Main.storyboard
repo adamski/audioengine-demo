@@ -101,8 +101,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3T-Hf-9JR">
-                                <rect key="frame" x="16" y="407" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3T-Hf-9JR" userLabel="StatusLabel">
+                                <rect key="frame" x="16" y="396" width="130" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -134,6 +134,7 @@
                         <outlet property="playStopButton" destination="FE5-17-QAq" id="Hh6-ru-zCn"/>
                         <outlet property="roomSizeSlider" destination="cYx-in-vy8" id="qwT-j9-7Ph"/>
                         <outlet property="roomSizeValueLabel" destination="5Vi-Lx-Wlv" id="Xn9-jI-TQc"/>
+                        <outlet property="statusLabel" destination="S3T-Hf-9JR" id="cb5-2m-QHB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

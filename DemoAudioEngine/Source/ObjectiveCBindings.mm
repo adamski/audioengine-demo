@@ -53,12 +53,35 @@
     audioEngine.setLowpassCutoff (cutoff);
 }
 
-- (void) setPlaybackDidFinish: (Callback) callback    // 2
+- (void) setPlaybackDidFinish: (Callback) callback      // 2
 {
     // Here we need to store the block/lambda in our Obj-C wrapper otherwise it will get deleted
     self.playbackFinishedCallback = callback;
     audioEngine.setPlaybackFinishedCallback(callback);
 }
+
+- (void) setWaveformComponentBounds: (CGRect) bounds                     // 3
+{
+    audioEngine.setWaveformComponentBounds (bounds.origin.x,
+                                            bounds.origin.y,
+                                            bounds.size.width,
+                                            bounds.size.height);
+}
+
+- (void) addWaveformComponentToView: (UIView*) viewToAttachTo            // 3
+{
+    audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
+}
+
+//- (void) setSize: (int) width withHeight: (int) height  // 3
+//{
+//    opPopComponent.setBounds (0, 0, (int) width, (int) height);
+//}
+//
+//- (UIView*) getNativeHandle                             // 3
+//{
+//    return (UIView*) opPopComponent.getWindowHandle();
+//}
 
 @end
 

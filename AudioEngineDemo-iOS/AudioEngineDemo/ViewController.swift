@@ -14,6 +14,7 @@ class ViewController:
         UINavigationControllerDelegate {
     
     @IBOutlet var playStopButton: UIButton!
+    @IBOutlet var statusLabel: UILabel!
     @IBOutlet var roomSizeValueLabel: UILabel!
     @IBOutlet var lowCutoffValueLabel: UILabel!
 
@@ -36,9 +37,17 @@ class ViewController:
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
         
-        audioEngine.setPlaybackDidFinish({() -> Void in    // 2
-            self.didFinishPlaying();
+        audioEngine.setPlaybackDidFinish({() -> Void in     // 2
+            self.didFinishPlaying()
         })
+        
+        let waveformBounds = CGRect(x: 25,                      // 3
+                                    y: self.view.bounds.size.height * 0.7,
+                                    width: self.view.bounds.size.width - 50,
+                                    height: self.view.bounds.size.height * 0.25)
+        
+        audioEngine.setWaveformComponentBounds(waveformBounds)  // 3
+        audioEngine.addWaveformComponent (to: self.view)        // 3
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
@@ -64,20 +73,22 @@ class ViewController:
     
     @IBAction func playButtonClicked() {
         self.audioEngine.play (self.fileURL?.absoluteString)  // 1
-        self.playStopButton.setTitle("Stop", for: UIControl.State.normal);
+        self.playStopButton.setTitle("Stop", for: UIControl.State.normal)
+        self.statusLabel.text = "Playing file..."
     }
     
     func didFinishPlaying()
     {
-        self.playStopButton.setTitle("Play", for: UIControl.State.normal);
+        self.playStopButton.setTitle("Play", for: UIControl.State.normal)
+        self.statusLabel.text = "Stopped"
     }
     
     @IBAction func pauseButtonClicked() {
-        self.audioEngine.pause(); // 1
+        self.audioEngine.pause() // 1
     }
     
     @IBAction func resumeButtonClicked() {
-        self.audioEngine.resume(); // 1
+        self.audioEngine.resume() // 1
     }
     
     @IBAction func showButtonClicked() {
