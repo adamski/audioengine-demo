@@ -28,7 +28,6 @@ class ViewController:
 
         audioEngine = DemoAudioEngineBindings()     // 1
         
-        
         super.init(coder: aDecoder)
     }
     
@@ -36,6 +35,10 @@ class ViewController:
         super.viewDidLoad()
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
+        
+        audioEngine.setPlaybackDidFinish({() -> Void in    // 2
+            self.didFinishPlaying();
+        })
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {

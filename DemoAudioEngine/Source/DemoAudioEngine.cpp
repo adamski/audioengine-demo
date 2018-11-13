@@ -311,8 +311,6 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
         {
             auto sampleRate = reader->sampleRate;
 
-            hasInformedListeners.store (false);
-
             audioFile.reset(new AudioFormatReaderSource(reader.release(), true));
 
             transportSource.setSource(audioFile.get(), 48000, this, sampleRate, 2);
@@ -371,16 +369,6 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
         lowpassCoefficientStorage = std::move(newCoeffs);
     }
 
-    void addListener(DemoAudioEngine::Listener* listener)
-    {
-        listeners.add (listener);
-    }
-
-    void removeListener(DemoAudioEngine::Listener* listener)
-    {
-        listeners.remove (listener);
-    }
-
     void* addWaveformComponentToNativeParentView (void* nativeView)
     {
         waveformComponent.setVisible (true);
@@ -398,10 +386,8 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
     {
         stop();
 
-        if (! hasInformedListeners.load())
-            listeners.call([] (DemoAudioEngine::Listener& listener) { listener.filePlaybackFinished(); });
-
-        hasInformedListeners.store (true);
+        if (playbackFinishedCallback != nullptr)
+            playbackFinishedCallback();
     }
 
     void audioDeviceIOCallback(const float** /*inputs*/, int /*inChannels*/, float** outputs, int outChannels, int n) override
@@ -426,7 +412,7 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
         dsp::ProcessContextReplacing<float> context(outBlock);
         lowpass.process(context);
 
-        if (transportSource.hasStreamFinished() && ! hasInformedListeners.load())
+        if (transportSource.hasStreamFinished())
             triggerAsyncUpdate();
     }
 
@@ -451,6 +437,7 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
     }
 
     bool playbackInitialised = false;
+    std::function<void()> playbackFinishedCallback;
     AudioFormatManager fm;
     AudioDeviceManager dm;
     AudioTransportSource transportSource;
@@ -466,14 +453,8 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
     dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>> lowpass;
     std::unique_ptr<dsp::IIR::Coefficients<float>> lowpassCoefficientStorage;
     std::atomic<dsp::IIR::Coefficients<float>*> currentLowpassCoefficients;
-
-    std::atomic<bool> hasInformedListeners = {false};
-    ListenerList<DemoAudioEngine::Listener> listeners;
-    
-    std::function<void()> playbackFinishedCallback; // Test
 };
 
-DemoAudioEngine::Listener::~Listener() {}
 DemoAudioEngine::DemoAudioEngine() : pimpl (new Pimpl)   {}
 DemoAudioEngine::~DemoAudioEngine()                      { delete pimpl; pimpl = nullptr; }
 void DemoAudioEngine::play(const char* url)              { pimpl->play(url); }
@@ -482,7 +463,6 @@ void DemoAudioEngine::pause()                            { pimpl->pause(); }
 void DemoAudioEngine::resume()                           { pimpl->resume(); }
 void DemoAudioEngine::setRoomSize(float roomSize)        { pimpl->setRoomSize(roomSize); }
 void DemoAudioEngine::setLowpassCutoff(float lpCutOff)   { pimpl->setLowpassCutoff(lpCutOff); }
-void DemoAudioEngine::addListener(Listener* listener)    { pimpl->addListener (listener); }
-void DemoAudioEngine::removeListener(Listener* listener) { pimpl->removeListener (listener); }
+void DemoAudioEngine::setPlaybackFinishedCallback(std::function<void()> cb) { pimpl->playbackFinishedCallback = std::move(cb); }
 void* DemoAudioEngine::addWaveformComponentToNativeParentView (void* nativeView) { return pimpl->addWaveformComponentToNativeParentView (nativeView); }
 void DemoAudioEngine::removeWaveformComponentFromNativeParentView()             { pimpl->removeWaveformComponentFromNativeParentView(); }

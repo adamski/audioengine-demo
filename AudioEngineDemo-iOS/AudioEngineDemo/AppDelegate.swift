@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         // Copy default files to app Documents folder
-        // (There is proabably a cleaner way to do this!)
+        // (There is probably a cleaner way to do this!)
         let file1URL = Bundle.main.url(forResource: "Chhhhaah", withExtension: ".wav")
         let file2URL = Bundle.main.url(forResource: "The VERONA Break edit", withExtension: ".wav")
         
