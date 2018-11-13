@@ -1,0 +1,19 @@
+﻿<Window x:Class="AudioEngineDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AudioEngineDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Play" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="PlayButtonClicked" Width="75"/>
+        <Button Content="Stop" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Width="75" Click="StopButtonClicked"/>
+        <Button Content="Pause" HorizontalAlignment="Left" Margin="114,54,0,0" VerticalAlignment="Top" Width="75" Click="PauseButtonClicked"/>
+        <Button Content="Resume" HorizontalAlignment="Left" Margin="221,54,0,0" VerticalAlignment="Top" Width="75" Click="ResumeButtonClicked"/>
+        <Slider x:Name="roomSizeSlider" HorizontalAlignment="Left" Margin="26,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="-26.542,-9.389" Width="496" ValueChanged="RoomSizeSliderValueChanged" Maximum="1" LargeChange="0.1" SmallChange="0.01" Value="0.5"/>
+        <Slider x:Name="lowPassSlider" HorizontalAlignment="Left" Margin="26,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-26.542,-9.389" Width="496" ValueChanged="LowPassSliderValueChanged" Maximum="1" LargeChange="0.1" SmallChange="0.01" Value="1.0"/>
+        <Label x:Name="statusLabel" Content="Label" HorizontalAlignment="Left" Margin="26,163,0,0" VerticalAlignment="Top"/>
+        <Border x:Name="juceStage" BorderBrush="Black" BorderThickness="0" Margin="0,194,0,0"/>
+    </Grid>
+</Window>

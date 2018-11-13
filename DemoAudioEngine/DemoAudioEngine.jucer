@@ -4,18 +4,16 @@
               companyName="Acme Inc." bundleIdentifier="com.acme.DemoAudioEngine">
   <MAINGROUP id="rsHQ8Z" name="DemoAudioEngine">
     <GROUP id="{08F550BD-C8BB-3100-441A-58903A2F048F}" name="Source">
-      <GROUP id="{3A1377D6-8069-F7ED-A639-D656C4D3DBFE}" name="Objective-C">
-        <FILE id="w0W29W" name="AudioEngineWrapper.h" compile="0" resource="0"
-              file="Source/Objective-C/AudioEngineWrapper.h"/>
-        <FILE id="UZ6luR" name="AudioEngineWrapper.mm" compile="1" resource="0"
-              file="Source/Objective-C/AudioEngineWrapper.mm"/>
-      </GROUP>
       <FILE id="e0rlkS" name="AndroidBindings.cpp" compile="1" resource="0"
             file="Source/AndroidBindings.cpp"/>
       <FILE id="PFUocb" name="DemoAudioEngine.cpp" compile="1" resource="0"
             file="Source/DemoAudioEngine.cpp"/>
       <FILE id="P71x78" name="DemoAudioEngine.h" compile="0" resource="0"
             file="Source/DemoAudioEngine.h"/>
+      <FILE id="NwFopL" name="ObjectiveCBindings.h" compile="0" resource="0"
+            file="Source/ObjectiveCBindings.h"/>
+      <FILE id="EdjNt0" name="ObjectiveCBindings.mm" compile="1" resource="0"
+            file="Source/ObjectiveCBindings.mm"/>
       <FILE id="LLJW4d" name="WindowsBindings.cpp" compile="1" resource="0"
             file="Source/WindowsBindings.cpp"/>
     </GROUP>

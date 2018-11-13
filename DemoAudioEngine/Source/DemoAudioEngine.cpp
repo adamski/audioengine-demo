@@ -318,8 +318,8 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
             transportSource.setSource(audioFile.get(), 48000, this, sampleRate, 2);
             transportSource.start();
 
-            if (waveformComponent != nullptr)
-                waveformComponent->setURL (fileToLoad);
+
+            waveformComponent.setURL (fileToLoad);
 
             dm.addAudioCallback(this);
             dm.initialiseWithDefaultDevices(0, 2);
@@ -383,20 +383,15 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
 
     void* addWaveformComponentToNativeParentView (void* nativeView)
     {
-        if (waveformComponent == nullptr)
-        {
-            waveformComponent = std::make_unique<WaveformComponent> (fm, transportSource);
-        }
-        
-        waveformComponent->setVisible (true);
-        waveformComponent->addToDesktop (0, nativeView);
+        waveformComponent.setVisible (true);
+        waveformComponent.addToDesktop (0, nativeView);
 
-        return waveformComponent->getPeer()->getNativeHandle();
+        return waveformComponent.getPeer()->getNativeHandle();
     }
 
     void removeWaveformComponentFromNativeParentView()
     {
-        waveformComponent->removeFromDesktop();
+        waveformComponent.removeFromDesktop();
     }
 
     void handleAsyncUpdate() override
@@ -459,7 +454,7 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
     AudioFormatManager fm;
     AudioDeviceManager dm;
     AudioTransportSource transportSource;
-    std::unique_ptr<WaveformComponent> waveformComponent;
+    WaveformComponent waveformComponent {fm, transportSource};
 
     AudioSampleBuffer scratchBuffer;
 
@@ -474,6 +469,8 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
 
     std::atomic<bool> hasInformedListeners = {false};
     ListenerList<DemoAudioEngine::Listener> listeners;
+    
+    std::function<void()> playbackFinishedCallback; // Test
 };
 
 DemoAudioEngine::Listener::~Listener() {}

@@ -61,7 +61,6 @@ class ViewController:
         documentPicker.title = "Choose an audio file"
         
         self.present(documentPicker, animated: true, completion: nil)
-        
     }
     
     @IBAction func roomSizeSliderValueChanged(sender: UISlider) {
