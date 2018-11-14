@@ -73,6 +73,7 @@
     audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }
 
+
 @end
 
 #endif

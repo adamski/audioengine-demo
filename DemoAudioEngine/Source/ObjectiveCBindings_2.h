@@ -10,7 +10,6 @@
 #ifdef __APPLE__
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>             // 3
 
 typedef void (^Callback)();         // 2
 
@@ -28,7 +27,6 @@ typedef void (^Callback)();         // 2
 - (void) setPlaybackDidFinish: (Callback) callback;       // 2
 
 - (void) setWaveformComponentBounds: (CGRect) bounds;
-- (void) addWaveformComponentToView: (UIView*) viewToAttachTo;             // 3
 
 @property (copy) Callback playbackFinishedCallback;       // 2
 

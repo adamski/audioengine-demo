@@ -60,19 +60,6 @@
     audioEngine.setPlaybackFinishedCallback(callback);
 }
 
-- (void) setWaveformComponentBounds: (CGRect) bounds                     // 3
-{
-    audioEngine.setWaveformComponentBounds (bounds.origin.x,
-                                            bounds.origin.y,
-                                            bounds.size.width,
-                                            bounds.size.height);
-}
-
-- (void) addWaveformComponentToView: (UIView*) viewToAttachTo            // 3
-{
-    audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
-}
-
 @end
 
 #endif

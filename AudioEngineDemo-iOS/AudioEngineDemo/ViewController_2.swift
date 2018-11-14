@@ -23,7 +23,12 @@ class ViewController:
 
     var fileURL: URL?
     
+    var audioEngine: DemoAudioEngineBindings   // 1
+    
     required init?(coder aDecoder: NSCoder) {
+
+        audioEngine = DemoAudioEngineBindings()     // 1
+        
         super.init(coder: aDecoder)
     }
     
@@ -31,6 +36,10 @@ class ViewController:
         super.viewDidLoad()
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
+        
+        audioEngine.setPlaybackDidFinish({() -> Void in     // 2
+            self.didFinishPlaying()
+        })
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
@@ -55,6 +64,7 @@ class ViewController:
     }
     
     @IBAction func playButtonClicked() {
+        self.audioEngine.play (self.fileURL?.absoluteString)  // 1
         self.playStopButton.setTitle("Stop", for: UIControl.State.normal)
         self.statusLabel.text = "Playing file..."
     }
@@ -66,11 +76,11 @@ class ViewController:
     }
     
     @IBAction func pauseButtonClicked() {
-        
+        self.audioEngine.pause() // 1
     }
     
     @IBAction func resumeButtonClicked() {
-        
+        self.audioEngine.resume() // 1
     }
     
     @IBAction func showButtonClicked() {
@@ -89,6 +99,7 @@ class ViewController:
             self.roomSizeValueLabel.text = "\(roomSizeValue)"
         }
         
+        self.audioEngine.setRoomSize (roomSizeValue)   // 1
     }
 
     @IBAction func lowCutoffSliderValueChanged(sender: UISlider) {
@@ -99,6 +110,7 @@ class ViewController:
             self.lowCutoffValueLabel.text = "\(lowCutoffValue)"
         }
         
+        self.audioEngine.setLowpassCutoff (lowCutoffValue)  // 1
     }
 
 }
