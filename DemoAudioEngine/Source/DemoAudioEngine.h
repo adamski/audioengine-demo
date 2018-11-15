@@ -21,14 +21,7 @@ public:
     // TODO add more DSP methods
 
     //==============================================================================
-    // You can only have the waveform component be in single parent view
 
-    // returns a point to the native handle of the component: only needed on windows
-    void* addWaveformComponentToNativeParentView (void* nativeView);
-    void removeWaveformComponentFromNativeParentView();
-    
-    void setWaveformComponentBounds (int x, int y, int width, int height);
-    
     void setPlaybackFinishedCallback (std::function<void()>); // 2
 
     //==============================================================================

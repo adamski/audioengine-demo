@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA01127E219A2FC9003AD55F /* DemoAudioEngine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EA011279219A2F79003AD55F /* DemoAudioEngine.dylib */; };
-		EA01127F219A3010003AD55F /* DemoAudioEngine.dylib in Copy Dynamic Library */ = {isa = PBXBuildFile; fileRef = EA011279219A2F79003AD55F /* DemoAudioEngine.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		EA0112AC219B7848003AD55F /* The VERONA Break edit.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA0112AA219B7848003AD55F /* The VERONA Break edit.wav */; };
+		EA0112B4219C4F8C003AD55F /* DemoAudioEngine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0112B3219C4F57003AD55F /* DemoAudioEngine.dylib */; };
+		EA0112B6219C4FBE003AD55F /* DemoAudioEngine.dylib in Copy Dynamic Library */ = {isa = PBXBuildFile; fileRef = EA0112B3219C4F57003AD55F /* DemoAudioEngine.dylib */; };
 		EA9192D521944A6E0016382E /* Chhhhaah.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA9192D421944A6E0016382E /* Chhhhaah.wav */; };
 		EAA01E032191DDE000AA8344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA01E022191DDE000AA8344 /* AppDelegate.swift */; };
 		EAA01E052191DDE000AA8344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA01E042191DDE000AA8344 /* ViewController.swift */; };
@@ -19,9 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EA011278219A2F79003AD55F /* PBXContainerItemProxy */ = {
+		EA0112B2219C4F57003AD55F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = EA011274219A2F79003AD55F /* DemoAudioEngine.xcodeproj */;
+			containerPortal = EA0112AE219C4F56003AD55F /* DemoAudioEngine.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 7428727726A39CAF6676C987;
 			remoteInfo = "DemoAudioEngine - Dynamic Library";
@@ -29,13 +29,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		EA011245219A0B08003AD55F /* Copy Dynamic Library */ = {
+		EA0112B5219C4F94003AD55F /* Copy Dynamic Library */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				EA01127F219A3010003AD55F /* DemoAudioEngine.dylib in Copy Dynamic Library */,
+				EA0112B6219C4FBE003AD55F /* DemoAudioEngine.dylib in Copy Dynamic Library */,
 			);
 			name = "Copy Dynamic Library";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,9 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EA011274219A2F79003AD55F /* DemoAudioEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DemoAudioEngine.xcodeproj; path = ../DemoAudioEngine/Builds/iOS/DemoAudioEngine.xcodeproj; sourceTree = "<group>"; };
 		EA0112AA219B7848003AD55F /* The VERONA Break edit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "The VERONA Break edit.wav"; sourceTree = "<group>"; };
-		EA6F9A592193320300E0108C /* AudioEngineDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioEngineDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		EA0112AE219C4F56003AD55F /* DemoAudioEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DemoAudioEngine.xcodeproj; path = ../DemoAudioEngine/Builds/iOS/DemoAudioEngine.xcodeproj; sourceTree = "<group>"; };
 		EA9192D421944A6E0016382E /* Chhhhaah.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Chhhhaah.wav; sourceTree = "<group>"; };
 		EA9192D621944C6A0016382E /* AudioEngineDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioEngineDemo.entitlements; sourceTree = "<group>"; };
 		EAA01DFF2191DDE000AA8344 /* AudioEngineDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioEngineDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,17 +61,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA01127E219A2FC9003AD55F /* DemoAudioEngine.dylib in Frameworks */,
+				EA0112B4219C4F8C003AD55F /* DemoAudioEngine.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EA011275219A2F79003AD55F /* Products */ = {
+		EA0112AF219C4F56003AD55F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EA011279219A2F79003AD55F /* DemoAudioEngine.dylib */,
+				EA0112B3219C4F57003AD55F /* DemoAudioEngine.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,7 +79,7 @@
 		EA6F9A4821932D6F00E0108C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EA011274219A2F79003AD55F /* DemoAudioEngine.xcodeproj */,
+				EA0112AE219C4F56003AD55F /* DemoAudioEngine.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,7 +121,6 @@
 				EAA01E092191DDE200AA8344 /* Assets.xcassets */,
 				EAA01E0B2191DDE200AA8344 /* LaunchScreen.storyboard */,
 				EAA01E0E2191DDE200AA8344 /* Info.plist */,
-				EA6F9A592193320300E0108C /* AudioEngineDemo-Bridging-Header.h */,
 			);
 			path = AudioEngineDemo;
 			sourceTree = "<group>";
@@ -134,7 +132,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAA01E112191DDE200AA8344 /* Build configuration list for PBXNativeTarget "AudioEngineDemo" */;
 			buildPhases = (
-				EA011245219A0B08003AD55F /* Copy Dynamic Library */,
+				EA0112B5219C4F94003AD55F /* Copy Dynamic Library */,
 				EAA01DFB2191DDE000AA8344 /* Sources */,
 				EAA01DFC2191DDE000AA8344 /* Frameworks */,
 				EAA01DFD2191DDE000AA8344 /* Resources */,
@@ -185,8 +183,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = EA011275219A2F79003AD55F /* Products */;
-					ProjectRef = EA011274219A2F79003AD55F /* DemoAudioEngine.xcodeproj */;
+					ProductGroup = EA0112AF219C4F56003AD55F /* Products */;
+					ProjectRef = EA0112AE219C4F56003AD55F /* DemoAudioEngine.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -197,11 +195,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		EA011279219A2F79003AD55F /* DemoAudioEngine.dylib */ = {
+		EA0112B3219C4F57003AD55F /* DemoAudioEngine.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = DemoAudioEngine.dylib;
-			remoteRef = EA011278219A2F79003AD55F /* PBXContainerItemProxy */;
+			remoteRef = EA0112B2219C4F57003AD55F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
