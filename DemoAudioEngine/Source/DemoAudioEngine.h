@@ -1,5 +1,7 @@
 #pragma once
 
+#import <functional>
+
 class DemoAudioEngine
 {
 public:

@@ -1,11 +1,9 @@
-#include "JuceHeader.h"
-
-#if JUCE_IOS || JUCE_MAC
+#if __APPLE__
 
 #import "ObjectiveCBindings.h"
 #import "DemoAudioEngine.h"
 
-
+#import "JuceHeader.h"
 @interface DemoAudioEngineBindings() {
     ScopedJuceInitialiser_GUI juceApp;  // This is needed for JUCE GUI
     DemoAudioEngine audioEngine;
@@ -59,7 +57,7 @@
                                             bounds.size.height);
 }
 
-- (void) addWaveformComponentToView: (UIView*) viewToAttachTo            // 2
+- (void) addWaveformComponentToView: (NSView*) viewToAttachTo            // 2
 {
     audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }

@@ -5,7 +5,7 @@
 #import "ObjectiveCBindings.h"
 #import "DemoAudioEngine.h"
 
-#import "JuceHeader.h"
+#include "JuceHeader.h"
 
 @interface DemoAudioEngineBindings() {
     ScopedJuceInitialiser_GUI juceInit;

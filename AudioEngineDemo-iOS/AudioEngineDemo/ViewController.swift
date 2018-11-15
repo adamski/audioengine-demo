@@ -15,7 +15,11 @@ class ViewController:
 
     var fileURL: URL?
     
+    var audioEngine: DemoAudioEngineBindings
+    
     required init?(coder aDecoder: NSCoder) {
+        
+        audioEngine = DemoAudioEngineBindings()
         super.init(coder: aDecoder)
     }
     
@@ -23,6 +27,17 @@ class ViewController:
         super.viewDidLoad()
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
+        
+        let waveformBounds = CGRect(x: 25,                      // 2
+            y: self.view.bounds.size.height * 0.7,
+            width: self.view.bounds.size.width - 50,
+            height: self.view.bounds.size.height * 0.25)
+        
+        audioEngine.setWaveformComponentBounds(waveformBounds)  // 2
+        
+        audioEngine.setPlaybackDidFinish({() -> Void in
+            self.didFinishPlaying()
+        })
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
@@ -55,22 +70,24 @@ class ViewController:
     @IBAction func playButtonClicked() {
         self.playStopButton.setTitle("Stop", for: UIControl.State.normal)
         self.statusLabel.text = "Playing file..."
+        
+        audioEngine.play(fileURL?.absoluteString)
     }
     
     @IBAction func pauseButtonClicked() {
-        
+        audioEngine.pause()
     }
     
     @IBAction func resumeButtonClicked() {
-        
+        audioEngine.resume()
     }
     
     @IBAction func showButtonClicked() {
-        
+        audioEngine.addWaveformComponent(to: self.view)
     }
     
     @IBAction func hideButtonClicked() {
-        
+        audioEngine.removeWaveformComponentFromView()
     }
     
     @IBAction func roomSizeSliderValueChanged(sender: UISlider) {
@@ -81,6 +98,7 @@ class ViewController:
             self.roomSizeValueLabel.text = "\(roomSizeValue)"
         }
         
+        audioEngine.setRoomSize(roomSizeValue)
     }
 
     @IBAction func lowCutoffSliderValueChanged(sender: UISlider) {
@@ -91,6 +109,7 @@ class ViewController:
             self.lowCutoffValueLabel.text = "\(lowCutoffValue)"
         }
         
+        audioEngine.setLowpassCutoff(lowCutoffValue)
     }
 }
 
