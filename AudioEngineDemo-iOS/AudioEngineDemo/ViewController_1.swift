@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  AudioEngineDemo
-//
-//  Created by Adam Wilson on 06/11/2018.
-//  Copyright © 2018 YourCompany. All rights reserved.
-//
-
 import UIKit
 
 class ViewController:

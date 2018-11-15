@@ -1,12 +1,3 @@
-//
-//  AudioEngineWrapper.m
-//  AudioEngine - Static Library
-//
-//  Created by Adam Wilson on 07/11/2018.
-//
-
-
-
 #include "JuceHeader.h"
 
 #if JUCE_IOS || JUCE_MAC

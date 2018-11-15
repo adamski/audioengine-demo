@@ -1,12 +1,3 @@
-//
-//  AudioEngineWrapper.m
-//  AudioEngine - Static Library
-//
-//  Created by Adam Wilson on 07/11/2018.
-//
-
-
-
 #include "JuceHeader.h"
 
 #if JUCE_IOS || JUCE_MAC
@@ -53,14 +44,14 @@
     audioEngine.setLowpassCutoff (cutoff);
 }
 
-- (void) setPlaybackDidFinish: (Callback) callback      // 2
+- (void) setPlaybackDidFinish: (Callback) callback      // 3
 {
     // Here we need to store the block/lambda in our Obj-C wrapper otherwise it will get deleted
     self.playbackFinishedCallback = callback;
     audioEngine.setPlaybackFinishedCallback(callback);
 }
 
-- (void) setWaveformComponentBounds: (CGRect) bounds                     // 3
+- (void) setWaveformComponentBounds: (CGRect) bounds                     // 2
 {
     audioEngine.setWaveformComponentBounds (bounds.origin.x,
                                             bounds.origin.y,
@@ -68,11 +59,15 @@
                                             bounds.size.height);
 }
 
-- (void) addWaveformComponentToView: (UIView*) viewToAttachTo            // 3
+- (void) addWaveformComponentToView: (UIView*) viewToAttachTo            // 2
 {
     audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }
 
+- (void) removeWaveformComponentFromView                                // 2
+{
+    audioEngine.removeWaveformComponentFromNativeParentView();
+}
 
 @end
 

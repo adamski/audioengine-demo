@@ -1,10 +1,3 @@
-//
-//  AudioEngineWrapper.h
-//  AudioEngine
-//
-//  Created by Adam Wilson on 07/11/2018.
-//
-
 #pragma once
 
 #ifdef __APPLE__

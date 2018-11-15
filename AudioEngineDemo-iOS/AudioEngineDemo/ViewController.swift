@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  AudioEngineDemo
-//
-//  Created by Adam Wilson on 06/11/2018.
-//  Copyright © 2018 YourCompany. All rights reserved.
-//
-
 import UIKit
 
 class ViewController:
@@ -23,10 +15,7 @@ class ViewController:
 
     var fileURL: URL?
     
-    var audioEngine: DemoAudioEngineBindings
-    
     required init?(coder aDecoder: NSCoder) {
-        audioEngine = DemoAudioEngineBindings()
         super.init(coder: aDecoder)
     }
     
@@ -34,18 +23,6 @@ class ViewController:
         super.viewDidLoad()
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
-        
-        audioEngine.setPlaybackDidFinish({() -> Void in
-            self.didFinishPlaying()
-        })
-        
-        let waveformBounds = CGRect(x: 25,                      // 3
-            y: self.view.bounds.size.height * 0.7,
-            width: self.view.bounds.size.width - 50,
-            height: self.view.bounds.size.height * 0.25)
-        
-        audioEngine.setWaveformComponentBounds(waveformBounds)
-        audioEngine.addWaveformComponent(to: self.view)
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
@@ -69,16 +46,15 @@ class ViewController:
         self.present(documentPicker, animated: true, completion: nil)
     }
     
-    @IBAction func playButtonClicked() {
-        self.audioEngine.play(self.fileURL?.absoluteString)
-        self.playStopButton.setTitle("Stop", for: UIControl.State.normal)
-        self.statusLabel.text = "Playing file..."
-    }
-    
     func didFinishPlaying()
     {
         self.playStopButton.setTitle("Play", for: UIControl.State.normal)
         self.statusLabel.text = "Stopped"
+    }
+
+    @IBAction func playButtonClicked() {
+        self.playStopButton.setTitle("Stop", for: UIControl.State.normal)
+        self.statusLabel.text = "Playing file..."
     }
     
     @IBAction func pauseButtonClicked() {
@@ -105,8 +81,6 @@ class ViewController:
             self.roomSizeValueLabel.text = "\(roomSizeValue)"
         }
         
-        self.audioEngine.setRoomSize (roomSizeValue)
-        
     }
 
     @IBAction func lowCutoffSliderValueChanged(sender: UISlider) {
@@ -117,9 +91,6 @@ class ViewController:
             self.lowCutoffValueLabel.text = "\(lowCutoffValue)"
         }
         
-        self.audioEngine.setLowpassCutoff (lowCutoffValue)
-        
     }
-
 }
 

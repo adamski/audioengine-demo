@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  AudioEngineDemo
-//
-//  Created by Adam Wilson on 06/11/2018.
-//  Copyright © 2018 YourCompany. All rights reserved.
-//
-
 import UIKit
 
 class ViewController:
@@ -37,9 +29,12 @@ class ViewController:
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
         
-        audioEngine.setPlaybackDidFinish({() -> Void in     // 2
-            self.didFinishPlaying()
-        })
+        let waveformBounds = CGRect(x: 25,                      // 2
+            y: self.view.bounds.size.height * 0.7,
+            width: self.view.bounds.size.width - 50,
+            height: self.view.bounds.size.height * 0.25)
+        
+        audioEngine.setWaveformComponentBounds(waveformBounds)  // 2
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
@@ -84,11 +79,11 @@ class ViewController:
     }
     
     @IBAction func showButtonClicked() {
-        
+        audioEngine.addWaveformComponent (to: self.view)        // 2
     }
     
     @IBAction func hideButtonClicked() {
-        
+        audioEngine.removeWaveformComponent (from: self.view)        // 2
     }
     
     @IBAction func roomSizeSliderValueChanged(sender: UISlider) {
