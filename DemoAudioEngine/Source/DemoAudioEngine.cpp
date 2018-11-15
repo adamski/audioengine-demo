@@ -391,7 +391,7 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
     {
         stop();
 
-        if (playbackFinishedCallback != nullptr)    // 2
+        if (playbackFinishedCallback != nullptr)
             playbackFinishedCallback();
     }
 
@@ -468,5 +468,7 @@ void DemoAudioEngine::pause()                            { pimpl->pause(); }
 void DemoAudioEngine::resume()                           { pimpl->resume(); }
 void DemoAudioEngine::setRoomSize(float roomSize)        { pimpl->setRoomSize(roomSize); }
 void DemoAudioEngine::setLowpassCutoff(float lpCutOff)   { pimpl->setLowpassCutoff(lpCutOff); }
-void DemoAudioEngine::setPlaybackFinishedCallback(std::function<void()> cb) { pimpl->playbackFinishedCallback = std::move(cb); }    // 2
-
+void DemoAudioEngine::setPlaybackFinishedCallback(std::function<void()> cb) { pimpl->playbackFinishedCallback = std::move(cb); }
+void* DemoAudioEngine::addWaveformComponentToNativeParentView (void* nativeView) { return pimpl->addWaveformComponentToNativeParentView (nativeView); }
+void DemoAudioEngine::removeWaveformComponentFromNativeParentView()             { pimpl->removeWaveformComponentFromNativeParentView(); }
+void DemoAudioEngine::setWaveformComponentBounds (int x, int y, int width, int height) { pimpl->setWaveformComponentBounds(x, y, width, height); }
