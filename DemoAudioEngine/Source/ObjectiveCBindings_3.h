@@ -22,7 +22,7 @@ typedef void (^Callback)();         // 3
 
 - (void) setWaveformComponentBounds: (CGRect) bounds;               // 2
 - (void) addWaveformComponentToView: (UIView*) viewToAttachTo;      // 2
-- (void) removeWaveformComponentFromView: (UIView*) viewToAttachTo; // 2
+- (void) removeWaveformComponentFromView;						    // 2
 
 @property (copy) Callback playbackFinishedCallback;       // 3
 
