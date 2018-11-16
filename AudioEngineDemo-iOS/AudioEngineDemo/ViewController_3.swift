@@ -12,15 +12,13 @@ class ViewController:
 
     @IBOutlet var roomSizeSlider: UISlider!
     @IBOutlet var lowCutoffSlider: UISlider!
+    @IBOutlet var waveformView: UIView!
 
     var fileURL: URL?
-    
-    var audioEngine: DemoAudioEngineBindings   // 1
+    var audioEngine: DemoAudioEngineBindings
     
     required init?(coder aDecoder: NSCoder) {
-
-        audioEngine = DemoAudioEngineBindings()     // 1
-        
+        audioEngine = DemoAudioEngineBindings();
         super.init(coder: aDecoder)
     }
     
@@ -29,21 +27,15 @@ class ViewController:
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
         
-        audioEngine.setPlaybackDidFinish({() -> Void in     // 3
+        audioEngine.addWaveformComponent(to: waveformView)
+        
+        audioEngine.setPlaybackDidFinish({() -> Void in
             self.didFinishPlaying()
         })
-        
-        let waveformBounds = CGRect(x: 25,                      // 2
-                                    y: self.view.bounds.size.height * 0.7,
-                                    width: self.view.bounds.size.width - 50,
-                                    height: self.view.bounds.size.height * 0.25)
-        
-        audioEngine.setWaveformComponentBounds(waveformBounds)  // 2
-        
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        self.fileURL = url as URL
+        fileURL = url as URL
         print("import result : \(String(describing: fileURL))")
     }
 
@@ -65,30 +57,36 @@ class ViewController:
     
     func didFinishPlaying()
     {
-        self.playStopButton.setTitle("Play", for: UIControl.State.normal)
-        self.statusLabel.text = "Stopped"
+        playStopButton.setTitle("Play", for: UIControl.State.normal)
+        statusLabel.text = "Stopped"
     }
-    
+
     @IBAction func playButtonClicked() {
-        self.audioEngine.play (self.fileURL?.absoluteString)  // 1
-        self.playStopButton.setTitle("Stop", for: UIControl.State.normal)
-        self.statusLabel.text = "Playing file..."
+        if (playStopButton.currentTitle == "Stop") {
+            didFinishPlaying()
+        } else {
+            playStopButton.setTitle("Stop", for: UIControl.State.normal)
+            statusLabel.text = "Playing file..."
+            
+            // play file
+            audioEngine.play(fileURL?.absoluteString)
+        }
     }
     
     @IBAction func pauseButtonClicked() {
-        self.audioEngine.pause() // 1
+        audioEngine.pause()
     }
     
     @IBAction func resumeButtonClicked() {
-        self.audioEngine.resume() // 1
+        audioEngine.resume()
     }
     
     @IBAction func showButtonClicked() {
-        audioEngine.addWaveformComponent (to: self.view)        // 2
+        audioEngine.addWaveformComponent(to: waveformView)
     }
     
     @IBAction func hideButtonClicked() {
-        audioEngine.removeWaveformComponent (from: self.view)        // 2
+        audioEngine.removeWaveformComponentFromView()
     }
     
     @IBAction func roomSizeSliderValueChanged(sender: UISlider) {
@@ -99,7 +97,7 @@ class ViewController:
             self.roomSizeValueLabel.text = "\(roomSizeValue)"
         }
         
-        self.audioEngine.setRoomSize (roomSizeValue)   // 1
+        audioEngine.setRoomSize(roomSizeValue)
     }
 
     @IBAction func lowCutoffSliderValueChanged(sender: UISlider) {
@@ -109,9 +107,7 @@ class ViewController:
         DispatchQueue.main.async {
             self.lowCutoffValueLabel.text = "\(lowCutoffValue)"
         }
-        
-        self.audioEngine.setLowpassCutoff (lowCutoffValue)  // 1
+        audioEngine.setLowpassCutoff(lowCutoffValue)
     }
-
 }
 

@@ -3,9 +3,9 @@
 #ifdef __APPLE__
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>             // 2
+#import <UIKit/UIKit.h>
 
-typedef void (^Callback)();         // 3
+typedef void (^Callback)();
 
 @interface DemoAudioEngineBindings : NSObject
 
@@ -18,13 +18,12 @@ typedef void (^Callback)();         // 3
 - (void) setRoomSize: (float) roomSize;
 - (void) setLowpassCutoff: (float) cutoff;
 
-- (void) setPlaybackDidFinish: (Callback) callback;       // 3
-
-- (void) setWaveformComponentBounds: (CGRect) bounds;               // 2
 - (void) addWaveformComponentToView: (UIView*) viewToAttachTo;      // 2
-- (void) removeWaveformComponentFromView;						    // 2
+- (void) removeWaveformComponentFromView;                            // 2
 
-@property (copy) Callback playbackFinishedCallback;       // 3
+- (void) setPlaybackDidFinish: (Callback) callback;
+
+@property (copy) Callback playbackFinishedCallback;
 
 @end
 
