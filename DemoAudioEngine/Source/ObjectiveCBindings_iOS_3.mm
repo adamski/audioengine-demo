@@ -1,24 +1,22 @@
+#include "JuceHeader.h"
 
-
-#if __APPLE__
+#if JUCE_IOS || JUCE_MAC
 
 #import "ObjectiveCBindings.h"
 #import "DemoAudioEngine.h"
 
-#import "JuceHeader.h"
 
 @interface DemoAudioEngineBindings() {
-    ScopedJuceInitialiser_GUI juceInit;
+    ScopedJuceInitialiser_GUI juceApp;  // This is needed for JUCE GUI
     DemoAudioEngine audioEngine;
 }
-
 @end
 
 @implementation DemoAudioEngineBindings
 
 - (void) play: (NSString*) urlString
 {
-    audioEngine.play(urlString.UTF8String);
+    audioEngine.play (urlString.UTF8String); 
 }
 
 - (void) stop
@@ -46,6 +44,13 @@
     audioEngine.setLowpassCutoff (cutoff);
 }
 
+- (void) setPlaybackDidFinish: (Callback) callback      // 3
+{
+    // Here we need to store the block/lambda in our Obj-C wrapper otherwise it will get deleted
+    self.playbackFinishedCallback = callback;
+    audioEngine.setPlaybackFinishedCallback(callback);
+}
+
 - (void) setWaveformComponentBounds: (CGRect) bounds                     // 2
 {
     audioEngine.setWaveformComponentBounds (bounds.origin.x,
@@ -54,7 +59,7 @@
                                             bounds.size.height);
 }
 
-- (void) addWaveformComponentToView: (ViewType) viewToAttachTo            // 2
+- (void) addWaveformComponentToView: (UIView*) viewToAttachTo            // 2
 {
     audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }
@@ -62,13 +67,6 @@
 - (void) removeWaveformComponentFromView                                // 2
 {
     audioEngine.removeWaveformComponentFromNativeParentView();
-}
-
-- (void) setPlaybackDidFinish: (Callback) callback      // 3
-{
-    // Here we need to store the block/lambda in our Obj-C wrapper otherwise it will get deleted
-    self.playbackFinishedCallback = callback;
-    audioEngine.setPlaybackFinishedCallback(callback);
 }
 
 @end

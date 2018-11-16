@@ -1,19 +1,24 @@
+
+
 #if __APPLE__
 
 #import "ObjectiveCBindings.h"
 #import "DemoAudioEngine.h"
 
-#import "JuceHeader.h"
+#include "JuceHeader.h"
+
 @interface DemoAudioEngineBindings() {
     ScopedJuceInitialiser_GUI juceInit;
     DemoAudioEngine audioEngine;
 }
+
 @end
 
 @implementation DemoAudioEngineBindings
+
 - (void) play: (NSString*) urlString
 {
-    audioEngine.play (urlString.UTF8String); 
+    audioEngine.play(urlString.UTF8String);
 }
 
 - (void) stop
@@ -41,13 +46,16 @@
     audioEngine.setLowpassCutoff (cutoff);
 }
 
-- (void) addWaveformComponentToView: (UIView*) viewToAttachTo            // 2
+- (void) setWaveformComponentBounds: (CGRect) bounds                     // 2
 {
-    CGRect bounds = viewToAttachTo.bounds;
-    audioEngine.setWaveformComponentBounds (0,
-                                            0,
+    audioEngine.setWaveformComponentBounds (bounds.origin.x,
+                                            bounds.origin.y,
                                             bounds.size.width,
                                             bounds.size.height);
+}
+
+- (void) addWaveformComponentToView: (ViewType) viewToAttachTo            // 2
+{
     audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }
 
@@ -62,7 +70,6 @@
     self.playbackFinishedCallback = callback;
     audioEngine.setPlaybackFinishedCallback(callback);
 }
-
 
 @end
 
