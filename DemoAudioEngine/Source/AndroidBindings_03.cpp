@@ -10,17 +10,17 @@ static void setCppInstance(JNIEnv* env, jobject javaInstance, DemoAudioEngine* c
 static DemoAudioEngine* getCppInstance (JNIEnv* env, jobject javaInstance);
 
 //==============================================================================
-class DemoAudioEngineAndroidBindings    : private DemoAudioEngine::Listener
+class DemoAudioEngineAndroidBindings
 {
 public:
     DemoAudioEngineAndroidBindings()
     {
-        audioEngine.addListener (this);
+        audioEngine.setPlaybackFinishedCallback ([this] () { filePlaybackFinished(); });
     }
 
     ~DemoAudioEngineAndroidBindings()
     {
-        audioEngine.removeListener (this);
+        audioEngine.setPlaybackFinishedCallback ({});
     }
 
 private:
@@ -62,7 +62,7 @@ private:
     }
 
     //==============================================================================
-    void filePlaybackFinished() override
+    void filePlaybackFinished()
     {
         // TODO!
     }
