@@ -12,18 +12,18 @@
 
 //==============================================================================
 // TODO: Step 5: Inherit from DemoAudioEngineIntf
-class DemoAudioEngineBindings : private DemoAudioEngine::Listener
+class DemoAudioEngineBindings
 {
 public:
     //==============================================================================
     DemoAudioEngineBindings()
     {
-        demoAudioEngine.addListener (this);
+        demoAudioEngine.setPlaybackFinishedCallback ([this]() { filePlaybackFinished();  });
     }
 
     ~DemoAudioEngineBindings()
     {
-        demoAudioEngine.removeListener (this);
+        demoAudioEngine.setPlaybackFinishedCallback ({});
     }
 
     //==============================================================================
@@ -59,7 +59,7 @@ public:
     // TODO: Step 7: Implement the play method
 
 private:
-    void filePlaybackFinished() override
+    void filePlaybackFinished()
     {
        // TODO
     }
