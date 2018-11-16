@@ -1,2 +1,2 @@
 include ':app'
-include ':../AudioEngine/Builds/Android/lib'
+include ':../DemoAudioEngine/Builds/Android/lib'
