@@ -1,9 +1,9 @@
+#if _WIN32
 #define JUCE_CORE_INCLUDE_COM_SMART_PTR 1
 #define JUCE_CORE_INCLUDE_NATIVE_HEADERS 1
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-#if JUCE_WINDOWS
 #include "DemoAudioEngine.h"
 
 //==============================================================================
