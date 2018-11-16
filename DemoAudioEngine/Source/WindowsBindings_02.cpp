@@ -6,13 +6,15 @@
 #if JUCE_WINDOWS
 #include "DemoAudioEngine.h"
 
-//==============================================================================
-// TODO: Step 4: Copy & paste the interface idl code here, and change it so it's
-// valid C++ code!
+struct DemoAudioEngineIntf : IUnknown
+{
+    static constexpr UUID iid = { 0xc1a01b40, 0xede0, 0x44ff, {0x93, 0xf8, 0xb5, 0x93, 0x96, 0xff, 0x67, 0x8d } };
+
+    virtual HRESULT STDMETHODCALLTYPE play(const char* url) noexcept = 0;
+};
 
 //==============================================================================
-// TODO: Step 5: Inherit from DemoAudioEngineIntf
-class DemoAudioEngineBindings : private DemoAudioEngine::Listener
+class DemoAudioEngineBindings : public DemoAudioEngineIntf, private DemoAudioEngine::Listener
 {
 public:
     //==============================================================================
@@ -27,15 +29,14 @@ public:
     }
 
     //==============================================================================
-    // TODO: Step 6: Uncomment this
-    /*HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** result) override
+    HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** result) override
     {
         if (result == nullptr)
             return E_POINTER;
 
         if      (riid == DemoAudioEngineIntf::iid) *result = dynamic_cast<DemoAudioEngineIntf*> (this);
         else if (riid == IID_IUnknown)             *result = dynamic_cast<IUnknown*> (this);
-        else                                                 return E_NOINTERFACE;
+        else                                               return E_NOINTERFACE;
 
         AddRef();
         return S_OK;
@@ -43,20 +44,25 @@ public:
 
     ULONG STDMETHODCALLTYPE AddRef() noexcept override
     {
-        return ++refCnt;
+        return refCnt.fetch_add(1, std::memory_order_relaxed) + 1;
     }
 
     ULONG STDMETHODCALLTYPE Release() noexcept override
     {
-        auto value = --refCnt;
+        auto value = refCnt.fetch_sub(1, std::memory_order_relaxed) - 1;
 
         if (value == 0)
             delete this;
 
         return value;
-    }*/
+    }
 
-    // TODO: Step 7: Implement the play method
+    //==============================================================================
+    HRESULT STDMETHODCALLTYPE play(const char* url) noexcept override
+    {
+        demoAudioEngine.play (url);
+        return S_OK;
+    }
 
 private:
     void filePlaybackFinished() override
@@ -64,15 +70,14 @@ private:
        // TODO
     }
 
-    std::atomic<int> refCnt = { 1 };
     ScopedJuceInitialiser_GUI juceInitialiser;
+    std::atomic<int> refCnt = { 1 };
     DemoAudioEngine demoAudioEngine;
 };
 
-// Entry point
-extern "C" __declspec(dllexport) int* __stdcall CreateDemoAudioEngine()
+extern "C" __declspec(dllexport) IUnknown* __stdcall CreateDemoAudioEngine()
 {
-    return nullptr;
+    return new DemoAudioEngineBindings;
 }
 
 #endif

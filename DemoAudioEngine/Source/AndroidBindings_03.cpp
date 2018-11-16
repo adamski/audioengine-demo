@@ -30,44 +30,48 @@ private:
 
     //==============================================================================
     #define JNI_CLASS_MEMBERS(METHOD, STATICMETHOD, FIELD, STATICFIELD, CALLBACK)                       \
-      // TODO Step 2: comment this back in
-      // CALLBACK (constructAudioEngine,   "constructAudioEngine",   "(Landroid/content/Context;)V")       \
-      // CALLBACK (destroyAudioEngine,     "destroyAudioEngine",     "()V")                                \
-
+      CALLBACK (constructAudioEngine,   "constructAudioEngine",   "(Landroid/content/Context;)V")       \
+      CALLBACK (destroyAudioEngine,     "destroyAudioEngine",     "()V")                                \
+                                                                                                        \
+      CALLBACK (play,     "play",     "(Ljava/lang/String;)V")                                          \
+                                                                                                        \
+      FIELD    (cppCounterpartInstance,    "cppCounterpartInstance", "J")
     DECLARE_JNI_CLASS (DemoAudioEngineJavaClass, "com/acme/demoaudioengine/DemoAudioEngine")
     #undef JNI_CLASS_MEMBERS
 
     //==============================================================================
+    // simple glue wrappers to invoke the native code
     static void JNICALL constructAudioEngine (JNIEnv* env, jobject javaInstance, jobject context)
     {
         Thread::initialiseJUCE (env, context);
 
         auto* cppCounterpartObject = new DemoAudioEngineAndroidBindings;
-
-        // TODO Step 2: store the c++ instance pointer in a member variable in the java class
-        // Use env->SetLongField(javaInstance, DemoAudioEngineJavaClass.<your-field-name-here>, fieldValue);
+        env->SetLongField (javaInstance,DemoAudioEngineJavaClass.cppCounterpartInstance, reinterpret_cast<jlong> (cppCounterpartObject));
     }
-
+    
     static void JNICALL destroyAudioEngine (JNIEnv* env, jobject javaInstance)
     {
         if (auto* myself = getCppInstance (env, javaInstance))
             delete myself;
     }
-
-    //==============================================================================
-    // simple glue wrappers to invoke the native code
+    
+    static void JNICALL play (JNIEnv* env, jobject javaInstance, jstring url)
+    {
+        if (auto* myself = getCppInstance (env, javaInstance))
+            myself->audioEngine.play (juceString (url).toRawUTF8());
+    }
 
     //==============================================================================
     void filePlaybackFinished() override
     {
         // TODO!
     }
-
+    
     //==============================================================================
     static DemoAudioEngineAndroidBindings* getCppInstance (JNIEnv* env, jobject javaInstance)
     {
-        // TODO Step 2: call env->GetLongField (env, javaInstance, DemoAudioEngineJavaClass.<your-field-name>);
-        return nullptr;
+        return reinterpret_cast<DemoAudioEngineAndroidBindings*> (env->GetLongField (javaInstance,
+                                                                                     DemoAudioEngineJavaClass.cppCounterpartInstance));
     }
 };
 

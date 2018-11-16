@@ -1,0 +1,35 @@
+import "unknwn.idl";
+
+// Some random uuids which you may want to use:
+// c1a01b40-ede0-44ff-93f8-b59396ff678d   { 0xc1a01b40, 0xede0, 0x44ff, {0x93, 0xf8, 0xb5, 0x93, 0x96, 0xff, 0x67, 0x8d } }
+// da981f98-3749-4af0-8813-f7cdd59e1690   { 0xda981f98, 0x3749, 0x4af0, {0x88, 0x13, 0xf7, 0xcd, 0xd5, 0x9e, 0x16, 0x90 } }
+// 309d711d-31cd-4531-8868-c89bc9f6428e   { 0x309d711d, 0x31cd, 0x4531, {0x88, 0x68, 0xc8, 0x9b, 0xc9, 0xf6, 0x42, 0x8e } }
+// 567558b8-abba-4ee4-8f16-28bb62e5d8c5   { 0x567558b8, 0xabba, 0x4ee4, {0x8f, 0x16, 0x28, 0xbb, 0x62, 0xe5, 0xd8, 0xc5 } }
+
+[uuid(fda89968-0885-4949-9b6d-805186f11fb9), version(1.0), helpstring("DemoAudioEngine")]
+library DemoAudioEngine
+{
+    [object, uuid(da981f98-3749-4af0-8813-f7cdd59e1690)]
+    interface DemoAudioEngineCallbacksIntf : IUnknown
+    {
+        HRESULT filePlaybackFinished();
+    };
+
+    [object, uuid(c1a01b40-ede0-44ff-93f8-b59396ff678d)]
+    interface DemoAudioEngineIntf : IUnknown
+    {
+        HRESULT play([in, string] char* url);
+        HRESULT stop();
+
+        HRESULT pause();
+        HRESULT resume();
+
+        HRESULT setRoomSize([in] float roomSize);
+        HRESULT setLowpassCutoff([in] float cutoff);
+
+        HRESULT setCallback([in] DemoAudioEngineCallbacksIntf callbackObj);
+
+        HRESULT addWaveformComponentToHWND([in] void* host, [out, retval] void* client);
+        HRESULT removeWaveformComponentFromHWND();
+    };
+};

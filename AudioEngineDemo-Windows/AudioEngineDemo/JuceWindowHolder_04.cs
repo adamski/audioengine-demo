@@ -10,19 +10,22 @@ namespace AudioEngineDemo
 {
     class JuceWindowHolder : HwndHost
     {
-        public JuceWindowHolder()
+        public JuceWindowHolder(ref DemoAudioEngine.DemoAudioEngineIntf audioEngine)
         {
+            demoAudioEngine = audioEngine;
         }
 
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
-            // TODO
-            throw new NotImplementedException();
+            return new HandleRef(this, demoAudioEngine.addWaveformComponentToHWND(hwndParent.Handle));
         }
 
         protected override void DestroyWindowCore(HandleRef hwnd)
         {
-            // TODO
+            demoAudioEngine.removeWaveformComponentFromHWND();
+            demoAudioEngine = null;
         }
+
+        private DemoAudioEngine.DemoAudioEngineIntf demoAudioEngine;
     }
 }

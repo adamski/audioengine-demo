@@ -20,7 +20,6 @@ namespace AudioEngineDemo
         public MainWindow()
         {
             demoAudioEngine = CreateDemoAudioEngine();
-
             InitializeComponent();
 
             statusLabel.Content = "Playback stopped";
@@ -37,6 +36,8 @@ namespace AudioEngineDemo
                 juceWindowHolder.Dispose();
                 juceWindowHolder = null;
             }
+
+            demoAudioEngine = null;
         }
 
         private void PlayButtonClicked(object sender, RoutedEventArgs e)
@@ -51,8 +52,7 @@ namespace AudioEngineDemo
             if (result == true)
             {
                 string url = (new System.Uri(dlg.FileName)).AbsoluteUri;
-
-                // TODO Step 3: call play on the demoAudioEngine object with the url here!!
+                demoAudioEngine.play(url);
 
                 statusLabel.Content = "File is playing...";
             }
@@ -85,11 +85,9 @@ namespace AudioEngineDemo
         }
 
         [System.Runtime.InteropServices.DllImport("DemoAudioEngine.dll")]
-        private static extern IntPtr CreateDemoAudioEngine();
+        private static extern DemoAudioEngine.DemoAudioEngineIntf CreateDemoAudioEngine();
 
-        // TODO Step 2: You can now change the placeholder IntPtr to DemoAudioEngine.DemoAudioEngineIntf
-        // See how auto-complete will now work!
-        private IntPtr demoAudioEngine;
+        private DemoAudioEngine.DemoAudioEngineIntf demoAudioEngine = null;
         private JuceWindowHolder juceWindowHolder = null;
     }
 }

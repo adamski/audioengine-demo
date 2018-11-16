@@ -10,8 +10,9 @@ namespace AudioEngineDemo
 {
     class JuceWindowHolder : HwndHost
     {
-        public JuceWindowHolder()
+        public JuceWindowHolder(ref DemoAudioEngine.DemoAudioEngineIntf audioEngine)
         {
+            demoAudioEngine = audioEngine;
         }
 
         protected override HandleRef BuildWindowCore(HandleRef hwndParent)
@@ -23,6 +24,9 @@ namespace AudioEngineDemo
         protected override void DestroyWindowCore(HandleRef hwnd)
         {
             // TODO
+            demoAudioEngine = null;
         }
+
+        private DemoAudioEngine.DemoAudioEngineIntf demoAudioEngine;
     }
 }
