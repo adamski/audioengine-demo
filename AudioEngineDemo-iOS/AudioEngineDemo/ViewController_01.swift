@@ -12,13 +12,16 @@ class ViewController:
 
     @IBOutlet var roomSizeSlider: UISlider!
     @IBOutlet var lowCutoffSlider: UISlider!
+    
     @IBOutlet var waveformView: UIView!
 
     var fileURL: URL?
+    
     var audioEngine: DemoAudioEngineBindings
     
     required init?(coder aDecoder: NSCoder) {
-        audioEngine = DemoAudioEngineBindings();
+        
+        audioEngine = DemoAudioEngineBindings()
         super.init(coder: aDecoder)
     }
     
@@ -26,16 +29,14 @@ class ViewController:
         super.viewDidLoad()
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
+    }
+    
+    override func viewDidLayoutSubviews() {
         
-        audioEngine.addWaveformComponent(to: waveformView)
-        
-        audioEngine.setPlaybackDidFinish({() -> Void in
-            self.didFinishPlaying()
-        })
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        fileURL = url as URL
+        self.fileURL = url as URL
         print("import result : \(String(describing: fileURL))")
     }
 
@@ -57,20 +58,15 @@ class ViewController:
     
     func didFinishPlaying()
     {
-        playStopButton.setTitle("Play", for: UIControl.State.normal)
-        statusLabel.text = "Stopped"
+        self.playStopButton.setTitle("Play", for: UIControl.State.normal)
+        self.statusLabel.text = "Stopped"
     }
 
     @IBAction func playButtonClicked() {
-        if (playStopButton.currentTitle == "Stop") {
-            didFinishPlaying()
-        } else {
-            playStopButton.setTitle("Stop", for: UIControl.State.normal)
-            statusLabel.text = "Playing file..."
-            
-            // play file
-            audioEngine.play(fileURL?.absoluteString)
-        }
+        self.playStopButton.setTitle("Stop", for: UIControl.State.normal)
+        self.statusLabel.text = "Playing file..."
+        
+        audioEngine.play(fileURL?.absoluteString)
     }
     
     @IBAction func pauseButtonClicked() {
@@ -107,6 +103,7 @@ class ViewController:
         DispatchQueue.main.async {
             self.lowCutoffValueLabel.text = "\(lowCutoffValue)"
         }
+        
         audioEngine.setLowpassCutoff(lowCutoffValue)
     }
 }

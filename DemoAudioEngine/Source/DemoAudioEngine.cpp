@@ -378,6 +378,7 @@ struct DemoAudioEngine::Pimpl   : private AudioIODeviceCallback, private TimeSli
     {
         waveformComponent.setVisible (true);
         waveformComponent.addToDesktop (0, nativeView);
+        
         return waveformComponent.getPeer()->getNativeHandle();
     }
 

@@ -26,12 +26,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../JUCE-dev/modules/juce_gui_basics/native/juce_ios_UIViewComponentPeer.mm"
-            timestampString = "564073767.657783"
+            timestampString = "564078952.739943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "678"
-            endingLineNumber = "678"
+            startingLineNumber = "683"
+            endingLineNumber = "683"
             landmarkName = "UIViewComponentPeer::getBounds (const bool global)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../JUCE-dev/modules/juce_gui_basics/native/juce_ios_UIViewComponentPeer.mm"
+            timestampString = "564078952.740425"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "584"
+            endingLineNumber = "584"
+            landmarkName = "UIViewComponentPeer::UIViewComponentPeer (Component&amp; comp, const int windowStyleFlags, UIView* viewToAttachTo)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../JUCE-dev/modules/juce_gui_basics/native/juce_ios_UIViewComponentPeer.mm"
+            timestampString = "564078952.741117"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "573"
+            endingLineNumber = "573"
+            landmarkName = "UIViewComponentPeer::UIViewComponentPeer (Component&amp; comp, const int windowStyleFlags, UIView* viewToAttachTo)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
