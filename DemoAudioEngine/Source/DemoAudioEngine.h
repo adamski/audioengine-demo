@@ -28,9 +28,8 @@ public:
     // returns a point to the native handle of the component: only needed on windows
     void* addWaveformComponentToNativeParentView (void* nativeView);
     void removeWaveformComponentFromNativeParentView();
-    
-    void setWaveformComponentBounds (int x, int y, int width, int height);
-    
+    void setWaveformComponentSize (int width, int height);  // Needed for iOS
+
     void setPlaybackFinishedCallback (std::function<void()>); // 2
 
     //==============================================================================

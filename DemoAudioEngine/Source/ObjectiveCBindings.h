@@ -25,7 +25,6 @@ typedef void (^Callback)();
 - (void) setRoomSize: (float) roomSize;
 - (void) setLowpassCutoff: (float) cutoff;
 
-- (void) setWaveformComponentBounds: (CGRect) bounds;               // 2
 - (void) addWaveformComponentToView: (ViewType) viewToAttachTo;      // 2
 - (void) removeWaveformComponentFromView;
 

@@ -124,6 +124,11 @@
                                     <action selector="hideButtonClicked" destination="BYZ-38-t0r" eventType="touchUpInside" id="gxL-Pn-Xlt"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2e0-IC-Udz" userLabel="WaveformView">
+                                <rect key="frame" x="16" y="450" width="343" height="197"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -135,6 +140,7 @@
                         <outlet property="roomSizeSlider" destination="cYx-in-vy8" id="qwT-j9-7Ph"/>
                         <outlet property="roomSizeValueLabel" destination="5Vi-Lx-Wlv" id="Xn9-jI-TQc"/>
                         <outlet property="statusLabel" destination="S3T-Hf-9JR" id="cb5-2m-QHB"/>
+                        <outlet property="waveformView" destination="2e0-IC-Udz" id="rHC-Nj-CHx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

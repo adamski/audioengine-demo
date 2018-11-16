@@ -12,6 +12,8 @@ class ViewController:
 
     @IBOutlet var roomSizeSlider: UISlider!
     @IBOutlet var lowCutoffSlider: UISlider!
+    
+    @IBOutlet var waveformView: UIView!
 
     var fileURL: URL?
     
@@ -28,16 +30,13 @@ class ViewController:
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
         
-        let waveformBounds = CGRect(x: 25,                      // 2
-            y: self.view.bounds.size.height * 0.7,
-            width: self.view.bounds.size.width - 50,
-            height: self.view.bounds.size.height * 0.25)
-        
-        audioEngine.setWaveformComponentBounds(waveformBounds)  // 2
-        
         audioEngine.setPlaybackDidFinish({() -> Void in
             self.didFinishPlaying()
         })
+    }
+    
+    override func viewDidLayoutSubviews() {
+        audioEngine.addWaveformComponent(to: waveformView)
     }
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
@@ -83,7 +82,7 @@ class ViewController:
     }
     
     @IBAction func showButtonClicked() {
-        audioEngine.addWaveformComponent(to: self.view)
+        audioEngine.addWaveformComponent(to: waveformView)
     }
     
     @IBAction func hideButtonClicked() {

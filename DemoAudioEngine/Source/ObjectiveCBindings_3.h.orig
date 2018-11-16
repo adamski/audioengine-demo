@@ -1,0 +1,42 @@
+#pragma once
+
+#ifdef __APPLE__
+
+#import <Foundation/Foundation.h>
+<<<<<<< HEAD
+#import <UIKit/UIKit.h>
+=======
+#import <AppKit/AppKit.h>             // 2
+>>>>>>> 8a931ded62a39cc321c9139eb8a889bd7d7c0247
+
+typedef void (^Callback)();
+
+@interface DemoAudioEngineBindings : NSObject
+
+- (void) play: (NSString*) urlString;
+- (void) stop;
+
+- (void) pause;
+- (void) resume;
+
+- (void) setRoomSize: (float) roomSize;
+- (void) setLowpassCutoff: (float) cutoff;
+
+<<<<<<< HEAD
+- (void) addWaveformComponentToView: (UIView*) viewToAttachTo;      // 2
+- (void) removeWaveformComponentFromView;                            // 2
+
+- (void) setPlaybackDidFinish: (Callback) callback;
+=======
+- (void) setPlaybackDidFinish: (Callback) callback;       // 3
+
+- (void) setWaveformComponentBounds: (CGRect) bounds;               // 2
+- (void) addWaveformComponentToView: (NSView*) viewToAttachTo;      // 2
+- (void) removeWaveformComponentFromView;						    // 2
+>>>>>>> 8a931ded62a39cc321c9139eb8a889bd7d7c0247
+
+@property (copy) Callback playbackFinishedCallback;
+
+@end
+
+#endif
