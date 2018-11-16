@@ -43,12 +43,9 @@
 
 - (void) addWaveformComponentToView: (UIView*) viewToAttachTo            // 2
 {
-    CGRect bounds = viewToAttachTo.bounds;
-    audioEngine.setWaveformComponentBounds (0,
-                                            0,
-                                            bounds.size.width,
-                                            bounds.size.height);
-    audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
+    CGSize size = viewToAttachTo.bounds.size;
+    audioEngine.setWaveformComponentSize(size.width, size.height);
+    UIView* waveformView = (UIView*) audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }
 
 - (void) removeWaveformComponentFromView                                // 2

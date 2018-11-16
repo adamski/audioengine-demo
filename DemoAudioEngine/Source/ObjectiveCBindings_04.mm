@@ -46,17 +46,11 @@
     audioEngine.setLowpassCutoff (cutoff);
 }
 
-- (void) setWaveformComponentBounds: (CGRect) bounds                     // 2
-{
-    audioEngine.setWaveformComponentBounds (bounds.origin.x,
-                                            bounds.origin.y,
-                                            bounds.size.width,
-                                            bounds.size.height);
-}
-
 - (void) addWaveformComponentToView: (ViewType) viewToAttachTo            // 2
 {
-    audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
+    CGSize size = viewToAttachTo.bounds.size;
+    audioEngine.setWaveformComponentSize(size.width, size.height);
+    ViewType waveformView = (ViewType) audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }
 
 - (void) removeWaveformComponentFromView                                // 2
