@@ -1,9 +1,9 @@
+#if _WIN32
 #define JUCE_CORE_INCLUDE_COM_SMART_PTR 1
 #define JUCE_CORE_INCLUDE_NATIVE_HEADERS 1
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-#if JUCE_WINDOWS
 #include "DemoAudioEngine.h"
 
 struct DemoAudioEngineCallbacksIntf : IUnknown
@@ -36,19 +36,19 @@ struct DemoAudioEngineIntf : IUnknown
 };
 
 //==============================================================================
-class DemoAudioEngineBindings : public DemoAudioEngineIntf, private DemoAudioEngine::Listener
+class DemoAudioEngineBindings : public DemoAudioEngineIntf
 {
 public:
     //==============================================================================
     DemoAudioEngineBindings()
     {
-        demoAudioEngine.addListener (this);
+        demoAudioEngine.setPlaybackFinishedCallback([this]() { filePlaybackFinished(); });
     }
 
     ~DemoAudioEngineBindings()
     {
         callback = nullptr;
-        demoAudioEngine.removeListener (this);
+        demoAudioEngine.setPlaybackFinishedCallback({});
     }
 
     //==============================================================================
@@ -57,9 +57,9 @@ public:
         if (result == nullptr)
             return E_POINTER;
 
-        if      (riid == DemoAudioEngineIntf::iid) *result = dynamic_cast<DemoAudioEngineIntf*> (this);
-        else if (riid == IID_IUnknown)             *result = dynamic_cast<IUnknown*> (this);
-        else                                               return E_NOINTERFACE;
+        if (riid == DemoAudioEngineIntf::iid) *result = dynamic_cast<DemoAudioEngineIntf*> (this);
+        else if (riid == IID_IUnknown)        *result = dynamic_cast<IUnknown*> (this);
+        else                                            return E_NOINTERFACE;
 
         AddRef();
         return S_OK;
@@ -83,17 +83,17 @@ public:
     //==============================================================================
     HRESULT STDMETHODCALLTYPE play(const char* url) noexcept override
     {
-        demoAudioEngine.play (url);
+        demoAudioEngine.play(url);
         return S_OK;
     }
-    HRESULT STDMETHODCALLTYPE stop() noexcept override                  { demoAudioEngine.stop();    return S_OK; }
+    HRESULT STDMETHODCALLTYPE stop() noexcept override { demoAudioEngine.stop();    return S_OK; }
 
     //==============================================================================
-    HRESULT STDMETHODCALLTYPE pause() noexcept override                 { demoAudioEngine.pause();  return S_OK; }
-    HRESULT STDMETHODCALLTYPE resume() noexcept override                { demoAudioEngine.resume(); return S_OK; }
+    HRESULT STDMETHODCALLTYPE pause() noexcept override { demoAudioEngine.pause();  return S_OK; }
+    HRESULT STDMETHODCALLTYPE resume() noexcept override { demoAudioEngine.resume(); return S_OK; }
 
     //==============================================================================
-    HRESULT STDMETHODCALLTYPE setRoomSize(float roomSize) noexcept override    { demoAudioEngine.setRoomSize(roomSize);    return S_OK; }
+    HRESULT STDMETHODCALLTYPE setRoomSize(float roomSize) noexcept override { demoAudioEngine.setRoomSize(roomSize);    return S_OK; }
     HRESULT STDMETHODCALLTYPE setLowpassCutoff(float cutoff) noexcept override { demoAudioEngine.setLowpassCutoff(cutoff); return S_OK; }
 
     HRESULT STDMETHODCALLTYPE setCallback(IUnknown* callbackToUse) noexcept override
@@ -102,7 +102,7 @@ public:
 
         if (callbackToUse != nullptr)
         {
-            auto status = callbackToUse->QueryInterface (DemoAudioEngineCallbacksIntf::iid, (void**) &callbackIntf);
+            auto status = callbackToUse->QueryInterface(DemoAudioEngineCallbacksIntf::iid, (void**)&callbackIntf);
 
             if (status != S_OK)
                 return status;
@@ -128,7 +128,7 @@ public:
     }
 
 private:
-    void filePlaybackFinished() override
+    void filePlaybackFinished()
     {
         if (callback != nullptr)
             callback->filePlaybackFinished();

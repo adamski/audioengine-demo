@@ -1,9 +1,9 @@
+#if _WIN32
 #define JUCE_CORE_INCLUDE_COM_SMART_PTR 1
 #define JUCE_CORE_INCLUDE_NATIVE_HEADERS 1
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-#if JUCE_WINDOWS
 #include "DemoAudioEngine.h"
 
 struct DemoAudioEngineIntf : IUnknown
@@ -27,18 +27,18 @@ struct DemoAudioEngineIntf : IUnknown
 };
 
 //==============================================================================
-class DemoAudioEngineBindings : public DemoAudioEngineIntf, private DemoAudioEngine::Listener
+class DemoAudioEngineBindings : public DemoAudioEngineIntf
 {
 public:
     //==============================================================================
     DemoAudioEngineBindings()
     {
-        demoAudioEngine.addListener (this);
+        demoAudioEngine.setPlaybackFinishedCallback([this]() { filePlaybackFinished(); });
     }
 
     ~DemoAudioEngineBindings()
     {
-        demoAudioEngine.removeListener (this);
+        demoAudioEngine.setPlaybackFinishedCallback({});
     }
 
     //==============================================================================
@@ -103,7 +103,7 @@ public:
     }
 
 private:
-    void filePlaybackFinished() override
+    void filePlaybackFinished()
     {
        // TODO
     }
