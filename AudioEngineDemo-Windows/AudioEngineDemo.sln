@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioEngineDemo", "AudioEng
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoAudioEngineInterface", "DemoAudioEngineInterface\DemoAudioEngineInterface.vcxproj", "{61B49B4E-11BF-42B6-A85B-CED7EBFD171E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoAudioEngine_DynamicLibrary", "..\AudioEngine\Builds\VisualStudio2017\DemoAudioEngine_DynamicLibrary.vcxproj", "{55982207-5BEB-13BC-3A83-166CF875735A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoAudioEngine_DynamicLibrary", "..\DemoAudioEngine\Builds\VisualStudio2017\DemoAudioEngine_DynamicLibrary.vcxproj", "{55982207-5BEB-13BC-3A83-166CF875735A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
