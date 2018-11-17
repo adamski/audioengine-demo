@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "com.acme.demoaudioengine"
+        applicationId "com.acme.DemoAudioEngine"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
@@ -17,9 +17,41 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+        if (names.contains ("debug_")
+                && variant.buildType.name != "debug") {
+            setIgnore(true)
+        }
+        if (names.contains ("release_")
+                && variant.buildType.name != "release") {
+            setIgnore(true)
+        }
+    }
+
     sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
+        debug_ {
+            jniLibs.srcDirs = ['../../DemoAudioEngine/Builds/Android/lib/build/intermediates/cmake/debug_/debug/obj']
+        }
+
+        release_ {
+            jniLibs.srcDirs = ['../../DemoAudioEngine/Builds/Android/lib/build/intermediates/cmake/release_/release/obj']
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        debug_ {
+            ndk {
+                abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+            }
+
+            dimension "default"
+        }
+        release_ {
+
+            dimension "default"
         }
     }
 }
@@ -31,5 +63,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation project(':../DemoAudioEngine/Builds/Android/lib')
+    runtimeOnly project(':../DemoAudioEngine/Builds/Android/lib')
 }

@@ -1,4 +1,4 @@
-package com.acme.demoaudioengine;
+package com.acme.DemoAudioEngine;
 
 import android.content.Context;
 import android.net.Uri;
@@ -33,23 +33,17 @@ public class DemoAudioEngine
 
     //==============================================================================
     public native void play(String uriToPlay);
-    public native void stop();
-    public native void pause();
-    public native void resume();
-    public native void setRoomSize(float roomSize);
-    public native void setLowpassCutoff(float lowpassCutoff);
-    public native void addWaveformComponentToNativeParentView (ViewGroup viewGroup);
-    public native void removeWaveformComponentFromNativeParentView();
+    public void stop() {}
+    public void pause() {}
+    public void resume() {}
+    public void setRoomSize(float roomSize) {}
+    public void setLowpassCutoff(float lowpassCutoff) {}
+    public void addWaveformComponentToNativeParentView (/* TODO: missing parameter */) {}
+    public void removeWaveformComponentFromNativeParentView() {}
 
     //==============================================================================
     private native void constructAudioEngine(Context context);
     private native void destroyAudioEngine();
-
-    //==============================================================================
-    private void invokeFilePlaybackFinishedListener()
-    {
-        invokeListener();
-    }
 
     //==============================================================================
     public void setListener(Listener listenerToAdd)
