@@ -1,9 +1,9 @@
-#if __APPLE__
+#ifdef __APPLE__
 
 #import "ObjectiveCBindings.h"
+#import "JuceHeader.h"
 #import "DemoAudioEngine.h"
 
-#import "JuceHeader.h"
 @interface DemoAudioEngineBindings() {
     ScopedJuceInitialiser_GUI juceInit;
     DemoAudioEngine audioEngine;
