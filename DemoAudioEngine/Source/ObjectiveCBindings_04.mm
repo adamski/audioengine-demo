@@ -1,11 +1,8 @@
-
-
 #if __APPLE__
 
 #import "ObjectiveCBindings.h"
+#import "JuceHeader.h"
 #import "DemoAudioEngine.h"
-
-#include "JuceHeader.h"
 
 @interface DemoAudioEngineBindings() {
     ScopedJuceInitialiser_GUI juceInit;
@@ -50,7 +47,7 @@
 {
     CGSize size = viewToAttachTo.bounds.size;
     audioEngine.setWaveformComponentSize(size.width, size.height);
-    ViewType waveformView = (ViewType) audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
+    audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }
 
 - (void) removeWaveformComponentFromView                                // 2

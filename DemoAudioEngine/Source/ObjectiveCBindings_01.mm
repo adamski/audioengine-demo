@@ -1,10 +1,8 @@
-#include "JuceHeader.h"
-
-#if JUCE_IOS || JUCE_MAC
+#ifdef __APPLE__
 
 #import "ObjectiveCBindings.h"
+#import "JuceHeader.h"
 #import "DemoAudioEngine.h"
-
 
 @interface DemoAudioEngineBindings() {
     ScopedJuceInitialiser_GUI juceApp;  // This is needed for JUCE GUI
