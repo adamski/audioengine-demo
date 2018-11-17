@@ -46,7 +46,7 @@ private:
       CALLBACK (removeWaveformComponentFromNativeParentView, "removeWaveformComponentFromNativeParentView", "()V")         \
                                                                                                         \
       FIELD    (cppCounterpartInstance,    "cppCounterpartInstance", "J")
-    DECLARE_JNI_CLASS (DemoAudioEngineJavaClass, "com/acme/DemoAudioEngine/DemoAudioEngine")
+    DECLARE_JNI_CLASS (DemoAudioEngineJavaClass, "com/acme/androidaudioenginedemo/DemoAudioEngine")
     #undef JNI_CLASS_MEMBERS
 
     //==============================================================================

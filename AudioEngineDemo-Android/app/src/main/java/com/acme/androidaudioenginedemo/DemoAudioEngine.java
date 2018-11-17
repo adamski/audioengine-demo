@@ -1,4 +1,4 @@
-package com.acme.DemoAudioEngine;
+package com.acme.androidaudioenginedemo;
 
 import android.content.Context;
 import android.net.Uri;
@@ -20,36 +20,28 @@ public class DemoAudioEngine
     public DemoAudioEngine(Context context)
     {
         super();
-        constructAudioEngine(context);
+
+        // TODO Step 1: call constructAudioEngine
     }
 
     @Override
     public void finalize() throws java.lang.Throwable
     {
+        // TODO Step 1: call destroyAudioEngine
+
         setListener (null);
-        destroyAudioEngine();
         super.finalize();
     }
 
     //==============================================================================
-    public native void play(String uriToPlay);
-    public native void stop();
-    public native void pause();
-    public native void resume();
-    public native void setRoomSize(float roomSize);
-    public native void setLowpassCutoff(float lowpassCutoff);
-    public native void addWaveformComponentToNativeParentView (ViewGroup viewGroup);
-    public native void removeWaveformComponentFromNativeParentView();
-
-    //==============================================================================
-    private native void constructAudioEngine(Context context);
-    private native void destroyAudioEngine();
-
-    //==============================================================================
-    private void invokeFilePlaybackFinishedListener()
-    {
-        invokeListener();
-    }
+    public void play(String uriToPlay) {}
+    public void stop() {}
+    public void pause() {}
+    public void resume() {}
+    public void setRoomSize(float roomSize) {}
+    public void setLowpassCutoff(float lowpassCutoff) {}
+    public void addWaveformComponentToNativeParentView (/* TODO Step 4: missing parameter */) {}
+    public void removeWaveformComponentFromNativeParentView() {}
 
     //==============================================================================
     public void setListener(Listener listenerToAdd)
@@ -72,7 +64,6 @@ public class DemoAudioEngine
     }
 
     //==============================================================================
-    private long cppCounterpartInstance = 0;
     private WeakReference<Listener> listener = null;
 };
 

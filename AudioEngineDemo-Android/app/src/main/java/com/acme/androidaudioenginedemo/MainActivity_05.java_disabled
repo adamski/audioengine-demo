@@ -1,4 +1,4 @@
-package com.acme.DemoAudioEngine;
+package com.acme.androidaudioenginedemo;
 
 import android.Manifest;
 import android.content.Intent;

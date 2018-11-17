@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "com.acme.DemoAudioEngine"
+        applicationId "com.acme.androidaudioenginedemo"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
@@ -63,5 +63,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    runtimeOnly project(':../DemoAudioEngine/Builds/Android/lib')
+    implementation project(':../DemoAudioEngine/Builds/Android/lib')
 }

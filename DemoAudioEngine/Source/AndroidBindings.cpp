@@ -34,7 +34,7 @@ private:
       // CALLBACK (constructAudioEngine,   "constructAudioEngine",   "(Landroid/content/Context;)V")       \
       // CALLBACK (destroyAudioEngine,     "destroyAudioEngine",     "()V")                                \
 
-    DECLARE_JNI_CLASS (DemoAudioEngineJavaClass, "com/acme/DemoAudioEngine/DemoAudioEngine")
+    DECLARE_JNI_CLASS (DemoAudioEngineJavaClass, "com/acme/androidaudioenginedemo/DemoAudioEngine")
     #undef JNI_CLASS_MEMBERS
 
     //==============================================================================
