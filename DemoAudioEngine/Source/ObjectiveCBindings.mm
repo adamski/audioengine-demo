@@ -48,7 +48,7 @@
 {
     CGSize size = viewToAttachTo.bounds.size;
     audioEngine.setWaveformComponentSize(size.width, size.height);
-    ViewType waveformView = (ViewType) audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
+    audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }
 
 - (void) removeWaveformComponentFromView                                // 2

@@ -41,11 +41,11 @@
     audioEngine.setLowpassCutoff (cutoff);
 }
 
-- (void) addWaveformComponentToView: (UIView*) viewToAttachTo            // 2
+- (void) addWaveformComponentToView: (NSView*) viewToAttachTo            // 2
 {
     CGSize size = viewToAttachTo.bounds.size;
     audioEngine.setWaveformComponentSize(size.width, size.height);
-    UIView* waveformView = (UIView*) audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
+    audioEngine.addWaveformComponentToNativeParentView (viewToAttachTo);
 }
 
 - (void) removeWaveformComponentFromView                                // 2

@@ -3,7 +3,7 @@
 #ifdef __APPLE__
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import <AppKit/AppKit.h>
 
 @interface DemoAudioEngineBindings : NSObject
 
@@ -16,7 +16,7 @@
 - (void) setRoomSize: (float) roomSize;
 - (void) setLowpassCutoff: (float) cutoff;
 
-- (void) addWaveformComponentToView: (ViewType) viewToAttachTo;      // 2
+- (void) addWaveformComponentToView: (NSView*) viewToAttachTo;      // 2
 - (void) removeWaveformComponentFromView;
 
 @end
