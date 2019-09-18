@@ -102,13 +102,13 @@ public class MainActivity extends AppCompatActivity implements DemoAudioEngine.L
 
     public void showButtonClicked(View sender)
     {
-        findViewById (R.id.waveFormViewGroup);
-        // TODO: Step 4
+        ViewGroup waveformViewGroup = (ViewGroup) findViewById (R.id.waveFormViewGroup);
+        demoAudioEngine.addWaveformComponentToNativeParentView (waveformViewGroup);
     }
 
     public void hideButtonClicked(View sender)
     {
-        // TODO: Step 4
+        demoAudioEngine.removeWaveformComponentFromNativeParentView ();
     }
 
     @Override

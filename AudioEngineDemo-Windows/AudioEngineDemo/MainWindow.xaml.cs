@@ -15,19 +15,21 @@ using System.Windows.Shapes;
 
 namespace AudioEngineDemo
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, DemoAudioEngine.DemoAudioEngineCallbacksIntf
     {
         public MainWindow()
         {
             demoAudioEngine = CreateDemoAudioEngine();
-
             InitializeComponent();
+
+            demoAudioEngine.setRoomSize((float)roomSizeSlider.Value);
+            demoAudioEngine.setLowpassCutoff((float)lowPassSlider.Value);
+            demoAudioEngine.setCallback(this);
 
             statusLabel.Content = "Playback stopped";
 
-            // TODO: comment this in later
-            /* juceWindowHolder = new JuceWindowHolder(ref demoAudioEngine);
-            juceStage.Child = juceWindowHolder; */
+            juceWindowHolder = new JuceWindowHolder(ref demoAudioEngine);
+            juceStage.Child = juceWindowHolder;
         }
 
         ~MainWindow()
@@ -37,6 +39,8 @@ namespace AudioEngineDemo
                 juceWindowHolder.Dispose();
                 juceWindowHolder = null;
             }
+
+            demoAudioEngine = null;
         }
 
         private void PlayButtonClicked(object sender, RoutedEventArgs e)
@@ -51,8 +55,7 @@ namespace AudioEngineDemo
             if (result == true)
             {
                 string url = (new System.Uri(dlg.FileName)).AbsoluteUri;
-
-                // TODO Step 3: call play on the demoAudioEngine object with the url here!!
+                demoAudioEngine.play(url);
 
                 statusLabel.Content = "File is playing...";
             }
@@ -60,23 +63,28 @@ namespace AudioEngineDemo
 
         private void StopButtonClicked(object sender, RoutedEventArgs e)
         {
+            demoAudioEngine.stop();
             statusLabel.Content = "Playback stopped";
         }
 
         private void PauseButtonClicked(object sender, RoutedEventArgs e)
         {
+            demoAudioEngine.pause();
         }
 
         private void ResumeButtonClicked(object sender, RoutedEventArgs e)
         {
+            demoAudioEngine.resume();
         }
 
         private void RoomSizeSliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            demoAudioEngine.setRoomSize((float)e.NewValue);
         }
 
         private void LowPassSliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            demoAudioEngine.setLowpassCutoff((float)e.NewValue);
         }
 
         public void filePlaybackFinished()
@@ -85,11 +93,9 @@ namespace AudioEngineDemo
         }
 
         [System.Runtime.InteropServices.DllImport("DemoAudioEngine.dll")]
-        private static extern IntPtr CreateDemoAudioEngine();
+        private static extern DemoAudioEngine.DemoAudioEngineIntf CreateDemoAudioEngine();
 
-        // TODO Step 2: You can now change the placeholder IntPtr to DemoAudioEngine.DemoAudioEngineIntf
-        // See how auto-complete will now work!
-        private IntPtr demoAudioEngine;
+        private DemoAudioEngine.DemoAudioEngineIntf demoAudioEngine = null;
         private JuceWindowHolder juceWindowHolder = null;
     }
 }

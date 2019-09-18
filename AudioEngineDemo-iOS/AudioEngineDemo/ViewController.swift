@@ -29,7 +29,10 @@ class ViewController:
         super.viewDidLoad()
         roomSizeValueLabel.text = "\(roomSizeSlider.value)"
         lowCutoffValueLabel.text = "\(lowCutoffSlider.value)"
-
+        
+        audioEngine.setPlaybackDidFinish({() -> Void in
+            self.didFinishPlaying()
+        })
     }
     
     override func viewDidLayoutSubviews() {

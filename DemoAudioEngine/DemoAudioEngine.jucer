@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="FGHqSi" name="DemoAudioEngine" projectType="dll" jucerVersion="5.4.1"
+<JUCERPROJECT id="FGHqSi" name="DemoAudioEngine" projectType="dll" jucerVersion="5.4.3"
               companyName="Acme Inc." bundleIdentifier="com.acme.DemoAudioEngine">
   <MAINGROUP id="rsHQ8Z" name="DemoAudioEngine">
     <GROUP id="{08F550BD-C8BB-3100-441A-58903A2F048F}" name="Source">
