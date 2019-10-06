@@ -23,7 +23,7 @@ On Android, if you have proguard set for release builds, it is very likely that 
     native <methods>;
 }
 
--keepclassmembers class com.nodeaudio.entonaltuner.TunerCore {
+-keepclassmembers class com.mycompany.myapp.MyNativeWrapperClass {
      long cppCounterpartInstance;
 }
 ```
